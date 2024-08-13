@@ -1,0 +1,50 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/desktopBg.jpg');
+    background-size: cover;
+}
+
+.formContainer {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+    .formContainer {
+        padding: 20px;
+        width: 80%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .formContainer {
+        padding: 15px;
+        width: 40%;
+    }
+}
+
+@media (min-width: 1025px) {
+    .formContainer {
+        margin-top: 4em;
+        padding: 15px;
+        width: 30%;
+    }
+  }
+
+
+.formContainer h2 {
+    text-align: center;
+}
+
+.loginButton button {
+    width: 12em;
+}
+
+div .input p {
+    color: rgb(0, 0, 0);
+}

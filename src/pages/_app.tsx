@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import '../styles/globals.css';
 import GetStarted from "./GetStarted/getStarted";
+import LoginPage from "./Login/login";
 // import LoginPage from "./loginPage";
 // import ComponenteTela from "./tela"
 // import CreateUserPage from "./createUserPage";
@@ -30,7 +31,8 @@ const App = ({ Component, pageProps }: AppProps) => {
         // <ComponenteTela>
         //   <Component {...pageProps} />
         // </ComponenteTela>
-        <GetStarted />
+        // <GetStarted />
+        <LoginPage />
     );
 
 
