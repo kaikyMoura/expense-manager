@@ -5,6 +5,7 @@ import Input from "@/components/Input/input";
 import Link from "next/link";
 import Button from "@/components/Button/button";
 import Toolbar from "@/components/ToolBar/toolbar";
+import { userLogin } from "@/api/services/userService";
 
 const LoginPage = () => {
 
@@ -16,27 +17,27 @@ const LoginPage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    // const login = async () => {
-    //     const usuario: IUserLogin = {
-    //         email: email,
-    //         password: password
-    //     }
-    //     sessionStorage.setItem('UserEmail', email)
-    //     setCarregando(true)
+    const login = async () => {
+        const usuario: IUserLogin = {
+            email: email,
+            password: password
+        }
+        sessionStorage.setItem('UserEmail', email)
+        setCarregando(true)
 
-    //     await userLogin(usuario).then(() => {
-    //         //setAlerta(true)
-    //         setCarregando(false)
-    //         router.push("/home")
-    //     }).catch((erro: any) => {
-    //         setCarregando(false)
-    //         setAlerta(true)
-    //         console.error("Erro: ", erro)
-    //     })
-    // }
-    // const Closer = () => {
-    //     setAlerta(false)
-    //}
+        await userLogin(usuario).then(() => {
+            //setAlerta(true)
+            setCarregando(false)
+            router.push("/Home/home")
+        }).catch((erro: any) => {
+            setCarregando(false)
+            setAlerta(true)
+            console.error("Erro: ", erro)
+        })
+    }
+    const Closer = () => {
+        setAlerta(false)
+    }
 
     return (
         <>
@@ -52,7 +53,7 @@ const LoginPage = () => {
                     } type={"password"} />
                     <br />
                     <div className={`flex justify-center ${styles.loginButton}`}>
-                        <Button text={"salvar"} width={280} height={25} type={"primary"} />
+                        <Button text={"salvar"} width={280} height={25} type={"primary"} action={login}/>
                     </div>
                     <br />
                     <div className="flex justify-center">

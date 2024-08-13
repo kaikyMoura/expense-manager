@@ -30,7 +30,7 @@ const GetStarted = () => {
                             </div>
 
                             <div className='mt-5 relative flex justify-center'>
-                                <Button text={'Acess acount'} type={'primary'} width={280} height={30} action={() => router.push('/login')} />
+                                <Button text={'Acess acount'} type={'primary'} width={280} height={30} action={() => router.push('/Login/login')} />
                             </div>
                         </div>
                     </div>

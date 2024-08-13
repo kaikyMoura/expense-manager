@@ -1,0 +1,27 @@
+.dashboard {
+    display: flex;
+    margin: 0%;
+    height: 100vh;
+    top: 0;
+}
+
+.container {
+    position: absolute;
+    padding: 60px;
+    font-family: Arial, sans-serif;
+    margin-top: 2em;
+}
+
+.toggleButton {
+    margin-top: 1.38em;
+    position: fixed;
+    margin-left: 12em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    left: calc(60px + 10px);
+    transition: 0.4s;
+    z-index: 3000;
+    overflow: hidden;
+}

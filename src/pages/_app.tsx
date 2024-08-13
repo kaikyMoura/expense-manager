@@ -4,37 +4,38 @@ import { useEffect } from "react";
 import '../styles/globals.css';
 import GetStarted from "./GetStarted/getStarted";
 import LoginPage from "./Login/login";
-// import LoginPage from "./loginPage";
-// import ComponenteTela from "./tela"
+import ComponenteTela from "./pageRender"
 // import CreateUserPage from "./createUserPage";
 
+
 const App = ({ Component, pageProps }: AppProps) => {
-    //   const router = useRouter()
+    const router = useRouter()
 
-    //   const token = typeof window !== 'undefined' ? sessionStorage.getItem('Token') : null;
+    const token = typeof window !== 'undefined' ? sessionStorage.getItem('Token') : null;
 
-    //   useEffect(() => {
-    //     console.log(token)
-    //     const renderizar = async () => {
-    //       if (!token && router.pathname !== '/loginPage') {
-    //         return <LoginPage />
-    //       }
-    //     }
-    //     renderizar()
-    //   }, [token, router]);
+    useEffect(() => {
+        console.log(token)
+        const renderizar = async () => {
+            if (!token && router.pathname !== '/Login/login') {
+                return <GetStarted />
 
-    //   if (router.pathname === '/createUserPage') {
+            }
+            else if (token && router.pathname == '/') {
+                router.push('/Home/home')
+            }
+        }
+        renderizar()
+    }, [token, router]);
+
+    // if (router.pathname === '/createUserPage') {
     //     return <CreateUserPage />
-    //   }
+    // }
 
     return (
-        // <ComponenteTela>
-        //   <Component {...pageProps} />
-        // </ComponenteTela>
-        // <GetStarted />
-        <LoginPage />
+        <ComponenteTela>
+            <Component {...pageProps} />
+        </ComponenteTela>
     );
-
 
 };
 

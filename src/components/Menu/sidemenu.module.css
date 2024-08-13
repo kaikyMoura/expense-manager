@@ -1,0 +1,106 @@
+.sideContainer {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.sidemenu {
+    transition: width 0.3s;
+    overflow: hidden;
+    position: fixed;
+    background-color: rgb(30, 30, 138);
+    z-index: 1000;
+    transition: width 0.8s;
+    width: 20%;
+    height: 100%;
+}
+
+.sidemenu h3 {
+    color: white;
+}
+
+.sidemenu ul {
+    padding: 8px;
+}
+
+.sidemenu li {
+    margin-left: 4%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    padding: 8px;
+    border-radius: 6px;
+    width: 92%;
+}
+
+.item {
+    width: 100%;
+    gap: 6em;
+    align-items: center;
+}
+
+.item i {
+    justify-content: center;
+}
+
+.sidemenu button {
+    margin-left: 4%;
+    background-color: rgb(255, 255, 255);
+    padding: 8px;
+    border-radius: 6px;
+    width: 85%;
+}
+
+.profile {
+    margin-top: 6px;
+    padding: 4px;
+    justify-content: start;
+}
+
+.profile h3 {
+    margin-top: 2dvh;
+}
+
+.profile.expanded {
+    margin-left: 0%;
+    justify-content: center;
+}
+
+.profile.collapsed {
+    /* background-color: rgb(175, 175, 175); */
+    margin-left: 1.25em;
+    width: 75%;
+    transition: 0.4s;
+    border-radius: 2px;
+}
+
+.profileIcon {
+    margin-top: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 34px;
+    transition: 0.5s;
+    z-index: 1000;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.listIcon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1000;
+    color: #181818;
+    overflow: hidden;
+}
+
+.listIcon.collapsed {
+    margin-left: 22%;
+}
+
+.listIcon.expanded {
+    position: absolute;
+    transition: 0.3s;
+    margin-left: 80%;
+}
