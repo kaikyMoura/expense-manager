@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    padding: 6em;
+    height: 100%;
+    overflow-y: hidden;
+    align-items: center;
+}
+
+.line {
+    margin-top: 1em;
+    background-color: rgb(212, 212, 212);
+    height: 2px;
+}

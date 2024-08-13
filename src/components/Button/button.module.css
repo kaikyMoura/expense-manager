@@ -1,0 +1,7 @@
+.styledButton {
+    border: 1px solid #000000;
+    border-radius: 8px;
+    box-sizing: border-box;
+    min-width: 6em;
+    min-height: 2em;
+}
