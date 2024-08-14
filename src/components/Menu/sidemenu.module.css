@@ -37,6 +37,10 @@
     border-radius: 12px;
 }
 
+.sidemenu li:hover {
+    background-color: #949494;
+}
+
 .item {
     width: 100%;
     align-items: center;

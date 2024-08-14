@@ -1,12 +1,10 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { faArrowRightFromBracket, faSliders } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Cookie from 'js-cookie'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from './sidemenu.module.css'
-import { useEffect, useState } from 'react'
-import { getUser } from '@/api/services/userService'
-import Cookie from 'js-cookie';
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightFromBracket, faSliders } from '@fortawesome/free-solid-svg-icons'
 
 interface SideMenuProps {
     items: { nome: string, link: string, icon: IconProp }[],
@@ -16,22 +14,12 @@ interface SideMenuProps {
 
 const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
 
-    const [perfil, setPerfil] = useState<IUser>()
     const router = useRouter()
 
     const Logout = async () => {
         Cookie.remove('Token')
         router.push('/')
     }
-
-    useEffect(() => {
-        const setUser = async () => {
-            const email = typeof window !== 'undefined' ? sessionStorage.getItem('UserEmail') : null;
-            const user = await getUser(email)
-            setPerfil(user)
-        }
-        setUser()
-    }, [])
 
     return (
         <>

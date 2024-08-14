@@ -25,7 +25,7 @@ const LoginPage = () => {
             password: password
         }
         sessionStorage.setItem('UserEmail', email)
-
+        console.log(email)
 
         await userLogin(usuario).then(() => {
             //setAlerta(true)

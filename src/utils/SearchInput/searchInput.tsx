@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from '../styles/searchinput.module.css'
+import styles from './searchinput.module.css'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons/faMagnifyingGlass'
 
 const SearchInput = () => {
@@ -7,8 +7,8 @@ const SearchInput = () => {
         <>
             <div className={`${styles.container}`}>
                 <input className={`focus:outline-none ${styles.input}`} placeholder="buscar..." />
-                <button className={styles.button}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} color='black' />
+                <button className={styles.searchButton}>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>
         </>

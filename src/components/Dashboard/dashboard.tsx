@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SideMenu from "../Menu/SideMenu";
 import styles from './dashboard.module.css';
 import { faBook, faChartSimple, faLightbulb, faPaintBrush, faShield, faTableCellsLarge, faTimeline, faToggleOn, faUsers } from "@fortawesome/free-solid-svg-icons";
+import NavBar from "../Navbar/navbar";
 
 interface DashBoardProps {
     children: React.ReactNode;
@@ -17,9 +18,7 @@ const DashBoard: React.FC<DashBoardProps> = ({ children }) => {
     return (
         <>
             <div className={`${styles.dashBoard}`}>
-                {/* <NavBar toggleSideBar={toggleSidebar} navegacao={[
-                    { nome: "Home", link: "/home" }
-                ]} titulo={"Dashboard"} /> */}
+                <NavBar titulo={"Expense Manager"} />
 
 
                 {!ativarSideMenu ?
