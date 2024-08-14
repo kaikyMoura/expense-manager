@@ -2,10 +2,18 @@ import Image from 'next/image'
 import styles from './getStarted.module.css'
 import Button from '@/components/Button/button'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import Loading from '@/utils/Loading/loading'
 
 
 const GetStarted = () => {
+
+    const [carregando, setCarregando] = useState(false)
     const router = useRouter()
+
+    const accessAccount = () => {
+        router.push('/Login/login')
+    }
 
     return (
         <>
@@ -30,12 +38,13 @@ const GetStarted = () => {
                             </div>
 
                             <div className='mt-5 relative flex justify-center'>
-                                <Button text={'Acess acount'} type={'primary'} width={280} height={30} action={() => router.push('/Login/login')} />
+                                <Button text={'Acess acount'} type={'primary'} width={280} height={30} action={accessAccount} />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {carregando ? <Loading /> : null}
         </>
     )
 }

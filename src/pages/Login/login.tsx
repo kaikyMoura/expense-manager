@@ -6,6 +6,7 @@ import Link from "next/link";
 import Button from "@/components/Button/button";
 import Toolbar from "@/components/ToolBar/toolbar";
 import { userLogin } from "@/api/services/userService";
+import Loading from "@/utils/Loading/loading";
 
 const LoginPage = () => {
 
@@ -18,12 +19,13 @@ const LoginPage = () => {
     const [password, setPassword] = useState("")
 
     const login = async () => {
+        setCarregando(true)
         const usuario: IUserLogin = {
             email: email,
             password: password
         }
         sessionStorage.setItem('UserEmail', email)
-        setCarregando(true)
+
 
         await userLogin(usuario).then(() => {
             //setAlerta(true)
@@ -53,7 +55,7 @@ const LoginPage = () => {
                     } type={"password"} />
                     <br />
                     <div className={`flex justify-center ${styles.loginButton}`}>
-                        <Button text={"salvar"} width={280} height={25} type={"primary"} action={login}/>
+                        <Button text={"salvar"} width={280} height={25} type={"primary"} action={login} />
                     </div>
                     <br />
                     <div className="flex justify-center">
@@ -64,6 +66,8 @@ const LoginPage = () => {
                     </div>
                 </form>
             </div>
+
+            {carregando ? <Loading /> : null}
         </>
     )
 }

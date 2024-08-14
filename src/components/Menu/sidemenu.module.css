@@ -3,51 +3,50 @@
     position: relative;
 }
 
-
 .sidemenu {
     transition: width 0.3s;
     overflow: hidden;
     position: fixed;
-    background-color: rgb(30, 30, 138);
+    background-color: #d3d3d3;
     z-index: 1000;
     transition: width 0.8s;
-    width: 20%;
+    min-width: 232px;
     height: 100%;
 }
 
 .sidemenu h3 {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
-.sidemenu ul {
-    padding: 8px;
+.selected {
+    background-color: #000000;
+    color: white;
+    width: 100%;
 }
+
+.side {
+    transform: scale(0.8);
+}
+
+/* .sidemenu ul {
+    
+} */
 
 .sidemenu li {
-    margin-left: 4%;
-    background-color: rgb(255, 255, 255);
-    display: flex;
     padding: 8px;
-    border-radius: 6px;
-    width: 92%;
+    border-radius: 12px;
 }
 
 .item {
     width: 100%;
-    gap: 6em;
     align-items: center;
 }
 
-.item i {
-    justify-content: center;
-}
-
 .sidemenu button {
-    margin-left: 4%;
-    background-color: rgb(255, 255, 255);
+    margin-left: 14%;
     padding: 8px;
     border-radius: 6px;
-    width: 85%;
+    transform: scale(0.8);
 }
 
 .profile {
@@ -103,4 +102,18 @@
     position: absolute;
     transition: 0.3s;
     margin-left: 80%;
+}
+
+.line {
+    background-color: rgb(151, 145, 145);
+    height: 2px;
+}
+
+.profileActions i {
+    display: flex;
+    width: 40px;
+    height: 38px;
+    border-radius: 42%;
+    justify-content: center;
+    background-color: #ffffff;
 }

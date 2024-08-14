@@ -1,7 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './input.module.css'
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useState } from 'react';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 interface InputProps {
     onClick?: Function | any;
@@ -15,7 +15,7 @@ const Input = ({ onClick, onChange, type, label, placeholder }: InputProps) => {
     const [changeIcon, setChangeIcon] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     let icon
-    type == "password" ? icon = <VisibilityIcon /> : null
+    type == "password" ? icon = <FontAwesomeIcon icon={faEye} /> : null
 
     const handleIconChange = (event: { preventDefault: () => void; }) => {
         event.preventDefault()
@@ -42,7 +42,7 @@ const Input = ({ onClick, onChange, type, label, placeholder }: InputProps) => {
                             </button>
                             :
                             <button className='' onClick={handleIconChange}>
-                                <i>{icon = <VisibilityOffIcon />}</i>
+                                <i>{icon = <FontAwesomeIcon icon={faEyeSlash} />}</i>
                             </button>
                         }
                     </>

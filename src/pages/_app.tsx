@@ -3,18 +3,17 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import '../styles/globals.css';
 import GetStarted from "./GetStarted/getStarted";
-import LoginPage from "./Login/login";
-import ComponenteTela from "./pageRender"
+import ComponenteTela from "./pageRender";
 // import CreateUserPage from "./createUserPage";
+import Cookie from 'js-cookie';
 
 
 const App = ({ Component, pageProps }: AppProps) => {
     const router = useRouter()
 
-    const token = typeof window !== 'undefined' ? sessionStorage.getItem('Token') : null;
+    const token = typeof window !== 'undefined' ? Cookie.get('Token') : null;
 
     useEffect(() => {
-        console.log(token)
         const renderizar = async () => {
             if (!token && router.pathname !== '/Login/login') {
                 return <GetStarted />

@@ -1,8 +1,9 @@
 import api from "../Api";
+import Cookie from 'js-cookie';
 
 export const userLogin = async (usuario: IUserLogin) => {
     return await api.post('/users/login', usuario).then((response) => {
-        return sessionStorage.setItem('Token', response.data.token)
+        return Cookie.set('Token', response.data.token, { expires: 1, path: '' })
     })
 }
 

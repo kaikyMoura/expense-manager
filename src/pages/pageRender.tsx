@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import GetStarted from "./GetStarted/getStarted";
 import LoginPage from "./Login/login";
 import DashBoard from "@/components/Dashboard/dashboard";
+import Cookie from 'js-cookie';
 
 const ComponenteTela: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const router = useRouter();
@@ -11,7 +12,7 @@ const ComponenteTela: React.FC<{ children: React.ReactNode }> = ({ children }) =
     useEffect(() => {
         const checkAuthentication = () => {
             if (typeof window !== 'undefined') {
-                const token = sessionStorage.getItem('Token');
+                const token = Cookie.get('Token');
 
                 if (!token) {
                     setIsAuthenticated(false);
@@ -31,7 +32,6 @@ const ComponenteTela: React.FC<{ children: React.ReactNode }> = ({ children }) =
     }, [router]);
 
     if (isAuthenticated === null) {
-        // Pode mostrar um spinner ou uma página de carregamento enquanto o estado de autenticação está sendo verificado
         return <div>Carregando...</div>;
     }
 
