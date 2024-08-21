@@ -4,18 +4,20 @@
 }
 
 .sidemenu {
-    transition: width 0.3s;
-    overflow: hidden;
     position: fixed;
     background-color: #d3d3d3;
     z-index: 1000;
-    transition: width 0.8s;
     min-width: 232px;
     height: 100%;
+    overflow-y: auto;
+    padding-top: 60px; /* Ajuste este valor conforme a altura do título */
 }
 
-.sidemenu h3 {
-    color: rgb(0, 0, 0);
+.sideMenuTitle {
+    position: absolute;
+    top: 0;
+    z-index: 1001;
+    text-align: center;
 }
 
 .selected {
@@ -26,11 +28,8 @@
 
 .side {
     transform: scale(0.8);
+    padding-top: 24px;
 }
-
-/* .sidemenu ul {
-    
-} */
 
 .sidemenu li {
     padding: 8px;

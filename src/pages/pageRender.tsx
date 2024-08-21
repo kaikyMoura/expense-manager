@@ -11,6 +11,7 @@ const ComponenteTela: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
     useEffect(() => {
         const checkAuthentication = () => {
+            console.log(window)
             if (typeof window !== 'undefined') {
                 const token = Cookie.get('Token');
 
@@ -19,7 +20,8 @@ const ComponenteTela: React.FC<{ children: React.ReactNode }> = ({ children }) =
                     if (router.pathname !== '/Login/login' && router.pathname !== '/GetStarted/getStarted') {
                         router.push('/GetStarted/getStarted');
                     }
-                } else {
+                } 
+                else {
                     setIsAuthenticated(true);
                     if (router.pathname === '/') {
                         router.push('/Home/home');
@@ -35,11 +37,11 @@ const ComponenteTela: React.FC<{ children: React.ReactNode }> = ({ children }) =
         return <div>Carregando...</div>;
     }
 
-    if (!isAuthenticated && router.pathname === '/GetStarted/getStarted') {
+    else if (!isAuthenticated && router.pathname === '/GetStarted/getStarted') {
         return <GetStarted />;
     }
 
-    if (!isAuthenticated && router.pathname === '/Login/login') {
+    else if (!isAuthenticated && router.pathname === '/Login/login') {
         return <LoginPage />;
     }
 

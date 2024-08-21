@@ -6,12 +6,14 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 interface InputProps {
     onClick?: Function | any;
     onChange?: Function | any;
-    label?: string
-    placeholder: string
-    type: "text" | "password" | "email"
+    label?: string;
+    value?: string | any;
+    placeholder: string;
+    type: "text" | "password" | "email" | "number";
+    maxLength?: number;
 }
 
-const Input = ({ onClick, onChange, type, label, placeholder }: InputProps) => {
+const Input = ({ onClick, onChange, type, label, placeholder, value, maxLength }: InputProps) => {
     const [changeIcon, setChangeIcon] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     let icon
@@ -32,8 +34,9 @@ const Input = ({ onClick, onChange, type, label, placeholder }: InputProps) => {
     return (
         <>
             <div className={`${styles.inputButton}`}>
-                <p>{label}</p>
-                <input className={`${styles.input}`} type={type === "password" && showPassword ? "text" : type} onClick={onClick} placeholder={placeholder} onChange={onChange} />
+                <label>{label}</label>
+                <input className={`${styles.input}`} type={type === "password" && showPassword ? "text" : type}
+                    onClick={onClick} placeholder={placeholder} onChange={onChange} value={value} maxLength={maxLength}/>
                 {type === "password" ?
                     <>
                         {!changeIcon ?

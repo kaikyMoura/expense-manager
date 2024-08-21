@@ -14,7 +14,10 @@ interface SideMenuProps {
 
 const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
 
+
     const router = useRouter()
+
+    const pageActive: any = items.find(item => router.pathname === item.link)
 
     const Logout = async () => {
         Cookie.remove('Token')
@@ -26,21 +29,14 @@ const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
             <div className={styles.sideContainer}>
                 <div className={`${styles.sidemenu}`}>
 
-                    {items?.map((item) => (
-                        <>
-                            <div className={`flex justify-center mt-5 text-2xl font-bold gap-2 -ml-4`}>
-                                {router.pathname === item.link && (
-                                    <>
-                                        <FontAwesomeIcon className='m-1' icon={item.icon} />
-                                        <h3>{item.nome}</h3>
-                                    </>
-                                )}
-                            </div >
-                        </>
-                    ))}
-                    
+                    <div className={`sticky flex justify-center text-2xl font-bold gap-2 ml-6 mt-4 ${styles.sideMenuTitle}`} >
+                        <FontAwesomeIcon className='m-1' icon={pageActive?.icon} />
+                        <h3>{pageActive?.nome}</h3>
+                    </div>
+
                     <div className={`${styles.side}`}>
-                        <ul className={`-mt-28`}>
+
+                        <ul className={`-mt-20`}>
                             {items?.map((item) => (
                                 <>
                                     <li className={`mt-1 ${router.pathname == item.link ? styles.selected : null}`}>

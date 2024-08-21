@@ -5,14 +5,27 @@
     top: 0;
 }
 
-.container {
-    position: absolute;
-    padding: 60px;
-    font-family: Arial, sans-serif;
-    margin-top: 2em;
+.blur {
+    filter: blur(8px);
+    display: flex;
+    margin: 0%;
+    height: 100vh;
+    top: 0;
 }
 
-.toggleButton {
+.children {
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-top: 6em;
+    margin-left: 15em;
+    min-height: calc(100vh - 6em);
+    max-width: 1200px;
+}
+
+/* .toggleButton {
     margin-top: 1.38em;
     position: fixed;
     margin-left: 12em;
@@ -24,4 +37,4 @@
     transition: 0.4s;
     z-index: 3000;
     overflow: hidden;
-}
+} */

@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    gap: 2em;
+}
+.calender {
+    width: 20em;
+    height: 20em;
+    border-radius: 8px;
+}
+
+.expenses {
+    background-color: #d3d3d3;
+    width: 26em;
+    height: 20em;
+    border-radius: 8px;
+}
+
+.expenses li {
+    margin-left: 16px;
+}
+
+.line {
+    width: 100%;
+    background-color: rgb(151, 145, 145);
+    height: 1px;
+}

@@ -1,0 +1,30 @@
+.modal {
+    position: fixed;
+    box-shadow: inset;
+    height: 98%;
+    width: 60%;
+    border: 2px solid;
+    border-radius: 6px;
+    top: 1%;
+    margin-left: 20%;
+    background-color: white;
+    z-index: 1000;
+}
+
+.modalContainer {
+    padding: 8px;
+    width: 100%;
+}
+
+.modalContainer textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.closeButton {
+    position: absolute;
+    top: 1em;
+    margin-left: 96%;
+}

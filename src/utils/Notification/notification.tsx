@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "../styles/notificacao.module.css";
+import styles from "./notification.module.css";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 

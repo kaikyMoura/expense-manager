@@ -1,27 +1,28 @@
-import { useRouter } from "next/router"
-import styles from './navbar.module.css'
-import SearchInput from "@/utils/SearchInput/searchInput"
 import { getUser } from "@/api/services/userService"
-import { useState, useEffect } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import SearchInput from "@/utils/SearchInput/searchInput"
 import { faBell, faUser } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
+import styles from './navbar.module.css'
+import ExpenseModal from "@/utils/ExpenseModal/expenseModal"
 
 interface NavBarProps {
-    navegacao?: { nome: string, link: string }[]
-    sidebarActive?: Boolean
     profile?: () => void,
+    openModal?: () => void,
     titulo: string
+    activeModal?: boolean
 }
 
-const NavBar = ({ titulo, navegacao, sidebarActive }: NavBarProps) => {
-    //const router = useRouter()
+const NavBar = ({ titulo, openModal}: NavBarProps) => {
+    const router = useRouter()
 
     const [perfil, setPerfil] = useState<IUser>()
 
     useEffect(() => {
         const setUser = async () => {
             const email = typeof window !== 'undefined' ? sessionStorage.getItem('UserEmail') : null;
-            console.log(email)
+            console.log(sessionStorage.getItem('UserEmail'))
             const user = await getUser(email)
             setPerfil(user)
         }
@@ -38,7 +39,7 @@ const NavBar = ({ titulo, navegacao, sidebarActive }: NavBarProps) => {
                     <SearchInput />
                 </div>
                 <div className="flex items-center mr-2 gap-6">
-                    <button className={`p-2 ${styles.profile}`}>
+                    <button className={`p-2 ${styles.profile}`} onClick={openModal}>
                         <p className="font-bold">Add expense</p>
                     </button>
                     <button className="flex items-center">
@@ -56,7 +57,8 @@ const NavBar = ({ titulo, navegacao, sidebarActive }: NavBarProps) => {
                 </div>
             </div>
         </div>
-    </>)
+    </>
+    )
 }
 
 export default NavBar
