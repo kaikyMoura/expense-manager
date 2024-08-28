@@ -68,7 +68,7 @@ Este projeto utiliza [Next.js](https://nextjs.org/), um framework React que faci
 Além do [TypeScript](https://www.typescriptlang.org/) como linguagem de desenvolvimento.
 
 ## Vizualização
-Esta são algumas das páginas do projeto:
+Esta são algumas das telas do projeto:
 
 ![lpPrtScr](https://github.com/user-attachments/assets/b5fff5b6-0d56-4cc6-86ca-e315730474b2)
 
