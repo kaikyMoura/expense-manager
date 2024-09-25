@@ -67,11 +67,8 @@ Este projeto utiliza [Next.js](https://nextjs.org/), um framework React que faci
 
 Além do [TypeScript](https://www.typescriptlang.org/) como linguagem de desenvolvimento.
 
-## Vizualização
-Esta são algumas das telas do projeto:
 
-![lpPrtScr](https://github.com/user-attachments/assets/b5fff5b6-0d56-4cc6-86ca-e315730474b2)
+## Deploy
 
-##
+O deploy do projeto foi feito através da vercel e pode ser acessado ao [clicar aqui](https://expense-manager-mocha.vercel.app/)
 
-![Capturar](https://github.com/user-attachments/assets/29c626ff-14a9-463d-9f03-5811e5aa6954)
