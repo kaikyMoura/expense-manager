@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { SetStateAction, useEffect, useState } from "react";
 import styles from './signup.module.css';
+import Link from "next/link";
 
 const Signup = () => {
     const [alerta, setAlerta] = useState(false)
@@ -35,7 +36,6 @@ const Signup = () => {
         const file = event.target.files?.[0]
         if (file) {
             const tempFile = new Blob([file], { type: file.type });
-            // Converte a imagem para Base64
             const tempFileUrl = URL.createObjectURL(tempFile);
             setTempImage(tempFileUrl);
 
@@ -115,6 +115,13 @@ const Signup = () => {
                                 <FontAwesomeIcon icon={faArrowRight} />
                             </button>
                         </div>
+
+                        <div className="mt-4 flex justify-center">
+                            <p className="font-medium">Already have an account ?</p>
+                            <Link className="ml-2" href="/Login/login">
+                                <p className="font-medium">click here</p>
+                            </Link>
+                        </div>
                     </div>
 
                     <div>
@@ -135,8 +142,14 @@ const Signup = () => {
                         <div className={`mt-2 flex justify-center ${styles.loginButton}`}>
                             <Button text={"salvar"} width={280} height={40} type={"primary"} action={createAccount} />
                         </div>
-                    </div>
 
+                        <div className="mt-4 flex justify-center">
+                            <p className="font-medium">Already have an account ?</p>
+                            <Link className="ml-2" href="/Login/login">
+                                <p className="font-medium">click here</p>
+                            </Link>
+                        </div>
+                    </div>
                 </Form>
             </div>
 
