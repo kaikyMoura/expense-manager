@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PROJETO DE CONTROLE DE DESPESAS #
 
-## Getting Started
 
-First, run the development server:
+## -- INTRODUÇÃO
+Este projeto usa o back-end do repositorio [autenticação com spring security](https://github.com/kaikyMoura/autenticacao---spring-Security).
+
+Este consiste em uma aplicação para controle de despesas.
+
+A ideia para o design deste projeto veio através da utilização de uma IA: [uizard.io](https://uizard.io/)
+
+## Instalação e Execução do Projeto
+
+Pré-requisitos
+
+Certifique-se de ter o Node.js instalado em sua máquina. Além disso, um gerenciador de pacotes como npm, yarn, pnpm ou bun é necessário para instalar as dependências do projeto.O primeiro comando a ser executado é o npm install para baixar os pacotes do projeto.
+
+
+## Clonar o Repositório
+
+Primeiro, clone o repositório para sua máquina local. Abra seu terminal e execute o comando abaixo:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/kaikyMoura/expense-manager.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Depois, navegue até o diretório do projeto.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Instalar Dependências
 
-## Learn More
+Instale todas as dependências necessárias para o projeto. Dependendo do gerenciador de pacotes que você prefere, execute um dos comandos abaixo:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+npm install
+#ou
+yarn install
+# ou
+pnpm install
+# ou
+bun install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Executar o Projeto
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Com as dependências instaladas, você pode iniciar o servidor de desenvolvimento com:
+```bash
+
+npm run dev
+# ou
+yarn dev
+# ou
+pnpm dev
+# ou
+bun dev
+
+```
+
+
+Em seguida abra o seguinte endereço [http://localhost:3000](http://localhost:3000) no seu navegador, para ver a aplicação sendo executada.
+
+
+## Documentação
+Este projeto utiliza [Next.js](https://nextjs.org/), um framework React que facilita a renderização do lado do servidor e a criação de sites estáticos.
+
+Além do [TypeScript](https://www.typescriptlang.org/) como linguagem de desenvolvimento.
+
+## Vizualização
+Esta são algumas das telas do projeto:
+
+![lpPrtScr](https://github.com/user-attachments/assets/b5fff5b6-0d56-4cc6-86ca-e315730474b2)
+
+##
+
+![Capturar](https://github.com/user-attachments/assets/29c626ff-14a9-463d-9f03-5811e5aa6954)
