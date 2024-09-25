@@ -4,15 +4,18 @@ import Button from '@/components/Button/button'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Loading from '@/utils/Loading/loading'
+import Cookie from 'js-cookie'
 
 
 const GetStarted = () => {
-
     const [carregando, setCarregando] = useState(false)
     const router = useRouter()
 
     const accessAccount = () => {
         router.push('/Login/login')
+    }
+    const createAccount = () => {
+        router.push('/Signup/signup')
     }
 
     return (
@@ -34,7 +37,7 @@ const GetStarted = () => {
 
                         <div className='mt-10'>
                             <div className='relative flex justify-center'>
-                                <Button text={'Get Started'} type={'primary'} width={280} height={30} />
+                                <Button text={'Get Started'} type={'primary'} width={280} height={30} action={createAccount}/>
                             </div>
 
                             <div className='mt-5 relative flex justify-center'>

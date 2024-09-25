@@ -2,7 +2,7 @@
     position: fixed;
     box-shadow: inset;
     height: 98%;
-    width: 60%;
+    width: 70%;
     border: 2px solid;
     border-radius: 6px;
     top: 1%;
@@ -12,8 +12,11 @@
 }
 
 .modalContainer {
-    padding: 8px;
     width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .modalContainer textarea {
@@ -23,8 +26,20 @@
     box-sizing: border-box;
 }
 
+.modalContainer select {
+    padding: 4px;
+    width: 10em;
+    background-color: bisque;
+    border-radius: 4px;
+    border: 1px solid #dfdfdf;
+}
+
 .closeButton {
     position: absolute;
     top: 1em;
     margin-left: 96%;
+}
+
+.datePicker {
+    width: 16em;
 }

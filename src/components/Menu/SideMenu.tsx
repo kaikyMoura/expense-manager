@@ -21,7 +21,7 @@ const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
 
     const Logout = async () => {
         Cookie.remove('Token')
-        router.push('/')
+        router.push('/GetStarted/getStarted')
     }
 
     return (

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import styles from './navbar.module.css'
-import ExpenseModal from "@/utils/ExpenseModal/expenseModal"
+import Button from "../Button/button"
 
 interface NavBarProps {
     profile?: () => void,
@@ -21,9 +21,8 @@ const NavBar = ({ titulo, openModal}: NavBarProps) => {
 
     useEffect(() => {
         const setUser = async () => {
-            const email = typeof window !== 'undefined' ? sessionStorage.getItem('UserEmail') : null;
-            console.log(sessionStorage.getItem('UserEmail'))
-            const user = await getUser(email)
+            const user = await getUser()
+            console.log(user)
             setPerfil(user)
         }
         setUser()
@@ -39,9 +38,7 @@ const NavBar = ({ titulo, openModal}: NavBarProps) => {
                     <SearchInput />
                 </div>
                 <div className="flex items-center mr-2 gap-6">
-                    <button className={`p-2 ${styles.profile}`} onClick={openModal}>
-                        <p className="font-bold">Add expense</p>
-                    </button>
+                    <Button className={`p-2 ${styles.profile}`} type={"secondary"} text={"Add expense"} action={openModal}/>
                     <button className="flex items-center">
                         <FontAwesomeIcon icon={faBell} fontSize={20} />
                     </button>

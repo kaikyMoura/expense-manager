@@ -20,3 +20,18 @@
     margin-top: 0.5em;
     margin-left: -2.2em;
 }
+
+.input[type='file'] {
+    border: none;
+    background-color: transparent;
+    width: 8.90em;
+}
+
+.input::file-selector-button {
+    color: #fff;
+    background-color: black;
+    width: 8em;
+    height: 2em;
+    cursor: pointer;
+    border-radius: 4px;
+}

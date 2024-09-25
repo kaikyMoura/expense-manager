@@ -1,9 +1,8 @@
-import { db } from "@/model/Expense"
+import api from "../Api"
 
 export const addExpense = async (expense: IExpense): Promise<void> => {
     try {
-        db.open()
-        console.log(await db.expenses.add(expense))
+        await api.post('/expense/', expense)
     } catch (e) {
         console.error("Erro : ", e)
     }
@@ -11,9 +10,20 @@ export const addExpense = async (expense: IExpense): Promise<void> => {
 
 export const getAllExpenses = async (): Promise<IExpense[]> => {
     try {
-        db.open()
-        const expenses = await db.expenses.toArray();
-        return expenses;
+        return api.get('/expense/list').then(response => {
+            return response.data.data
+        })
+    } catch (e) {
+        console.error("Erro : ", e)
+        return []
+    }
+
+}
+export const getExpensesCategories = async (): Promise<Category[]> => {
+    try {
+        return api.get('/expense/list/categories').then(response => {
+            return response.data.data
+        })
     } catch (e) {
         console.error("Erro : ", e)
         return []

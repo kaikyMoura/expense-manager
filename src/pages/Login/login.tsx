@@ -24,13 +24,11 @@ const LoginPage = () => {
             email: email,
             password: password
         }
-        sessionStorage.setItem('UserEmail', email)
-        console.log(email)
 
         await userLogin(usuario).then(() => {
             //setAlerta(true)
             setCarregando(false)
-            router.push("/Home/home")
+            router.replace("/Home/home")
         }).catch((erro: any) => {
             setCarregando(false)
             setAlerta(true)

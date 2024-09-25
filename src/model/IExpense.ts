@@ -4,9 +4,9 @@ interface IExpense {
     description: String,
     amount: Number,
     date: String | any,
-    category: String,
+    category: Object,
     currency: String,
     isRecurring: Boolean,
     attachments: String[],
-    priority: "Very high" | "High" | "Medium" | "Very low" |"Low" | undefined
+    priority: String
 }

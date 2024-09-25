@@ -29,10 +29,8 @@
     position: absolute;
     z-index: 1;
     bottom: 125%;
-    /* Position above the tooltip */
     left: 50%;
     margin-left: -60px;
-    /* Center the tooltip */
     opacity: 0;
     transition: opacity 0.3s;
 }

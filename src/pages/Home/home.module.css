@@ -2,6 +2,7 @@
     display: flex;
     gap: 2em;
 }
+
 .calender {
     width: 20em;
     height: 20em;
@@ -11,16 +12,36 @@
 .expenses {
     background-color: #d3d3d3;
     width: 26em;
-    height: 20em;
+    height: 21em;
     border-radius: 8px;
 }
 
-.expenses li {
-    margin-left: 16px;
+.expenses ul li {
+    margin-left: 0.75em;
+    width: 94%;
+}
+.expenses li:hover {
+    background-color: #ffffff;
+}
+
+.analitics {
+    background-color: #d3d3d3;
+    width: 14em;
+    height: 19em;
+    border-radius: 8px;
+}
+
+.expensesCategories {
+    margin-top: 19em;
+    position: absolute;
+    background-color: #d3d3d3;
+    width: 20em;
+    height: 19em;
+    border-radius: 8px;
 }
 
 .line {
     width: 100%;
-    background-color: rgb(151, 145, 145);
+    background-color: rgb(187, 185, 185);
     height: 1px;
 }

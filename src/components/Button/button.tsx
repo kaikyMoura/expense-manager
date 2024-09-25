@@ -6,10 +6,11 @@ interface ButtonProps {
     width?: number
     height?: number
     text: string;
+    className?: string;
     action?: Function | any
 }
 
-const Button = ({ text, width, height, action, type }: ButtonProps) => {
+const Button = ({ text, width, height, action, type, className }: ButtonProps) => {
     const [color, setColor] = useState('')
 
     const handleClick = (event: { preventDefault: () => void; }) => {
@@ -31,8 +32,8 @@ const Button = ({ text, width, height, action, type }: ButtonProps) => {
 
     return (
         <>
-            <button className={`font-medium ${styles.styledButton}`} style={{ width: width, height: height, backgroundColor: color, color: type == 'primary' ? 'white' : 'black'}} onClick={handleClick}>
-                <p>{text}</p>
+            <button className={`${className} ${styles.styledButton}`} style={{ width: width, height: height, backgroundColor: color}} onClick={handleClick}>
+                <p className="font-bold" style={{color: type == 'primary' ? 'white' : 'black'}}>{text}</p>
             </button>
         </>
     )

@@ -10,7 +10,7 @@
     min-width: 232px;
     height: 100%;
     overflow-y: auto;
-    padding-top: 60px; /* Ajuste este valor conforme a altura do título */
+    padding-top: 60px;
 }
 
 .sideMenuTitle {
@@ -68,7 +68,6 @@
 }
 
 .profile.collapsed {
-    /* background-color: rgb(175, 175, 175); */
     margin-left: 1.25em;
     width: 75%;
     transition: 0.4s;

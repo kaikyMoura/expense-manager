@@ -33,17 +33,18 @@ const Calendar = () => {
     const today = dayjs();
     const [highlightedDays, setHighlightedDays] = useState<Dayjs[]>([]);
 
-    useEffect(() => {
-        const fetchExpenses = async () => {
-            try {
-                const expenses = await getAllExpenses();
-                const days = expenses.map(expense => dayjs(expense.date));
-                setHighlightedDays(days);
-            } catch (error) {
-                console.error('Failed to fetch expenses:', error);
-            }
-        };
+    const fetchExpenses = async () => {
+        try {
+            const expenses = await getAllExpenses();
+            const days = expenses.map(expense => dayjs(expense.date));
+            setHighlightedDays(days);
+            console.log(days)
+        } catch (error) {
+            console.error('Failed to fetch expenses:', error);
+        }
+    };
 
+    useEffect(() => {
         fetchExpenses();
     }, []);
     // https://mui.com/x/react-date-pickers/date-picker/
@@ -54,31 +55,32 @@ const Calendar = () => {
                     sx={{
                         '.MuiPickersDay-root': {
                             borderRadius: '10px',
+                            backgroundColor: "white",
                             fontSize: 16,
                         },
                         '.MuiPickersDay-today': {
                             borderRadius: '10px',
                             borderWidth: '1px',
-                            borderColor: 'black',
+                            borderColor: '#000000',
                             border: '1px solid',
                         },
                         '.Mui-selected': {
                             borderRadius: '10px',
-                            borderColor: 'black',
-                            backgroundColor: 'black',
-                            color: 'white'
+                            backgroundColor: '#000000'
                         },
                         '.MuiDateCalendar-root': {
-                            color: 'black',
+                            color: '#000000',
                             borderRadius: '6px',
                             backgroundColor: '#d3d3d3',
                             boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
                         },
                         '.MuiPickersCalendarHeader-label': {
-                            color: 'black',
+                            color: '#000000',
+                            fontWeight: 'bold',
                             borderRadius: '6px',
                         },
                     }}
+                    onChange={fetchExpenses}
                     displayStaticWrapperAs='desktop'
                     maxDate={today.add(1, 'month')}
                     slots={{

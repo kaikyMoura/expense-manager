@@ -3,7 +3,6 @@
     margin-top: 2em;
     z-index: 1000;
     background-color: #d3d3d3;
-    
     border-radius: 8px;
     height: 3.75em;
     transition: 0.3s;
@@ -11,10 +10,13 @@
     justify-content: end;
 }
 
-/* @media (min-width: 0px) and (max-width: 768px) {
-    .formContainer {
-        padding: 20px;
-        width: 80%;
+
+
+/* @media (max-width: 769px) and (min-height: 500px) {
+    .navbar {
+        transform: scale(0.66);
+        width: 100%;
+        margin-left: 8em;
     }
 } */
 

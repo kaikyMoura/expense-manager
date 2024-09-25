@@ -1,7 +1,6 @@
 .modalBlur {
     position: fixed;
     box-shadow: inset;
-    /* Cor de fundo com transparência */
     backdrop-filter: blur(5px);
     height: 10em;
     position: absolute;
@@ -13,7 +12,7 @@
     left: 35%;
     background-color: white;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     z-index: 1000;
 }
 
