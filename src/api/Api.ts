@@ -3,7 +3,7 @@ import Cookie from 'js-cookie';
 
 const api = axios.create({
      //baseURL: 'https://autenticacao-spring-security-production.up.railway.app'
-    baseURL: 'http://localhost:8089',
+    baseURL: 'https://backend-expensemanager.onrender.com',
     headers: {
       'Content-Type': 'application/json'
   }
