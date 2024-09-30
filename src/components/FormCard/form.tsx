@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './form.module.css'
 
 interface FormProps {
@@ -11,11 +12,11 @@ interface FormProps {
 
 const Form = ({ action, children, pages, currentPage, onPageChange, title }: FormProps) => {
 
-    const handlePageChange = (page: number) => {
-        if (page >= 0 && page <= pages) {
-            onPageChange(page);
-        }
-    };
+    // const handlePageChange = (page: number) => {
+    //     if (page >= 0 && page <= pages) {
+    //         onPageChange(page);
+    //     }
+    // };
 
     // const renderPageNumbers = () => {
     //     const pageNumbers = [];

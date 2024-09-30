@@ -4,7 +4,6 @@ import Button from '@/components/Button/button'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Loading from '@/utils/Loading/loading'
-import Cookie from 'js-cookie'
 
 
 const GetStarted = () => {

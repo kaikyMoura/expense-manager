@@ -26,6 +26,7 @@ const Signup = () => {
     const [name, setName] = useState("")
     const [lastname, setLastName] = useState("")
     const [email, setEmail] = useState("")
+    const [repeatEmail, setRepeatEmail] = useState("")
     const [password, setPassword] = useState("")
     const [repeatPassword, setRepeatPassword] = useState("")
 
@@ -48,10 +49,12 @@ const Signup = () => {
     }
 
     const createAccount = async () => {
-        console.log(password)
-        console.log(repeatPassword)
 
         if (password != repeatPassword) {
+            setAlerta(true)
+        }
+
+        if (email != repeatEmail) {
             setAlerta(true)
         }
 
@@ -68,7 +71,7 @@ const Signup = () => {
         await createUser(usuario).then(() => {
             setAlerta(true)
             setCarregando(false)
-            router.push('/loginPage')
+            router.push('/VerifyAccount/verifyAccount')
         }).catch((erro) => {
             setCarregando(false)
             console.error("Erro: ", erro)
@@ -107,9 +110,9 @@ const Signup = () => {
                             </div>
                         </div>
                         <Input label={"Name"} placeholder={"name"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
-                            setEmail(e.target.value)} type={"email"} />
+                            setName(e.target.value)} type={"text"} value={name} />
                         <Input label={"Last name"} placeholder={"lastname"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
-                            setEmail(e.target.value)} type={"email"} />
+                            setLastName(e.target.value)} type={"text"} value={lastname} />
                         <div className="flex justify-center">
                             <button onClick={() => handlePageChange(currentPage + 1)}>
                                 <FontAwesomeIcon icon={faArrowRight} />
@@ -129,15 +132,15 @@ const Signup = () => {
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </button>
                         <Input label={"Email"} placeholder={"email"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
-                            setEmail(e.target.value)} type={"email"} />
+                            setEmail(e.target.value)} type={"email"} value={email} />
                         <Input label={"Repeat email"} placeholder={"email"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
-                            setEmail(e.target.value)} type={"email"} />
+                            setRepeatEmail(e.target.value)} type={"email"} value={repeatEmail} />
                         <Input label={"Password"} placeholder={"password"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
                             setPassword(e.target.value)
-                        } type={"password"} />
+                        } type={"password"} value={password} />
                         <Input label={"Repeat password"} placeholder={"password"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
-                            setPassword(e.target.value)
-                        } type={"password"} />
+                            setRepeatPassword(e.target.value)
+                        } type={"password"} value={repeatPassword} />
 
                         <div className={`mt-2 flex justify-center ${styles.loginButton}`}>
                             <Button text={"salvar"} width={280} height={40} type={"primary"} action={createAccount} />

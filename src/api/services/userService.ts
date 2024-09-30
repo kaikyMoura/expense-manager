@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 import api from "../Api";
 import Cookie from 'js-cookie';
+import { headers } from "next/headers";
 
 export const userLogin = async (usuario: IUserLogin) => {
     try {
@@ -34,6 +35,30 @@ export const getUser = async (): Promise<IUser> => {
         })
 }
 
+export const verifyAccount = async (jwtToken: string| string[] | undefined) => {
+    console.log(jwtToken)
+    try {
+        const response = await api.post('/users/verify-account', {}, {
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`
+            }
+        })
+        const token = response.data.data.token;
+        console.log(token)
+        if (token) {
+            Cookie.set('Token', token, { path: '/', secure: true, sameSite: 'Strict', httpOnly: true })
+            return { sucess: true }
+        }
+        else {
+            throw new Error('Token não recebido')
+        }
+    }
+    catch (error) {
+        const axiosError = error as AxiosError<ErrorResponse>;
+        return { success: false, error: axiosError.response?.data.details };
+    }
+}
+
 export const checkUserAuthentication = async (): Promise<ApiResponse<any>> => {
     try {
         const result = await api.get('/users/validate-token');
@@ -48,7 +73,7 @@ export const checkUserAuthentication = async (): Promise<ApiResponse<any>> => {
             if (axiosError.response) {
                 return {
                     success: false,
-                    error: axiosError.response.data.details // Acessa a mensagem de erro correta
+                    error: axiosError.response.data.details
                 };
             }
         }

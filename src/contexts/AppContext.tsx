@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import Cookie from 'js-cookie';
 import React from "react";
+import PrivateLayout from "@/pages/privateLayout";
+import PublicLayout from "@/pages/publicLayout";
 
 
 interface AppContextProps {
@@ -13,10 +15,15 @@ interface AppContextProps {
 
 const AppContext = createContext<AppContextProps | undefined>(undefined)
 
+const publicPages = ['/Login/login', '/Signup/signup', '/GetStarted/getStarted', '/VerifyAccount/verifyAccount', '/VerifyAccount/accountVerify']
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null); // null para estado inicial indefinido
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
     const router = useRouter();
+
+    const isPublicPage = publicPages.includes(router.pathname);
+
+    const Layout = isPublicPage ? PublicLayout : PrivateLayout;
 
     const [loading, setLoading] = useState<boolean | null>(null);
 
@@ -39,7 +46,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 }
             } else {
                 setIsAuthenticated(false);
-                if (router.pathname !== '/Login/login' && router.pathname !== '/Signup/signup') {
+                if (router.pathname !== '/Login/login' && router.pathname !== '/Signup/signup' && router.pathname !== '/VerifyAccount/verifyAccount' && router.pathname !== '/VerifyAccount/accountVerify') {
                     router.replace('/GetStarted/getStarted');
                 }
             }
@@ -59,7 +66,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     return (
         <AppContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
-            {children}
+            <Layout>
+                {children}
+            </Layout>
         </AppContext.Provider>
     );
 }
