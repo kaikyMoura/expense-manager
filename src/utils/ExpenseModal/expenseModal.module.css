@@ -1,45 +1,59 @@
-.modal {
+.modalContainer {
     position: fixed;
     box-shadow: inset;
     height: 98%;
-    width: 70%;
+    width: 90%;
+    max-width: 800px;
     border: 2px solid;
     border-radius: 6px;
     top: 1%;
-    margin-left: 20%;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: white;
     z-index: 1000;
+    overflow-y: auto;
 }
 
-.modalContainer {
+.modal {
     width: 100%;
-    padding: 4px;
+    padding: 16px;
     box-sizing: border-box;
-    display: flex;
     flex-direction: column;
 }
 
-.modalContainer textarea {
+@media (min-width: 0px) and (max-width: 768px) {
+    
+    .modalContainer {
+        width: 95%;
+        max-width: none; 
+        height: fit-content;
+        border-width: 1px;
+        top: 5%; 
+        padding: 50px;
+        
+    }
+    .modal {
+        transform: scale(1.2);
+    }
+}
+
+.modal textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-.modalContainer select {
+.modal select {
     padding: 4px;
-    width: 10em;
-    background-color: bisque;
     border-radius: 4px;
     border: 1px solid #dfdfdf;
+    height: 2.75em !important;
+    width: 20em;
 }
 
 .closeButton {
     position: absolute;
     top: 1em;
-    margin-left: 96%;
-}
-
-.datePicker {
-    width: 16em;
+    right: 1em;
 }

@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './home.module.css';
+import React from 'react';
 
 const Home = () => {
     const [expenses, setExpenses] = useState<IExpense[]>([])
@@ -16,8 +17,11 @@ const Home = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setExpenses(await getAllExpenses())
-
+            const data = await getAllExpenses()
+            console.log(data)
+            if (data.success === true) {
+                setExpenses(data.data)
+            }
             //setCategories(await getExpensesCategories())
         }
         fetchData()
@@ -35,7 +39,7 @@ const Home = () => {
                         <FontAwesomeIcon className='mr-7' icon={faEllipsisVertical} fontSize={20} />
                     </div>
                     <div className={`mt-3 relative ${styles.line}`} />
-                    {expenses.map(expense =>
+                    {expenses && expenses.map(expense =>
                         <>
                             <ul className='mt-2'>
                                 <li key={expense?.id} className='flex'>

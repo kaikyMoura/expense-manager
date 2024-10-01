@@ -29,26 +29,32 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     useEffect(() => {
         const handleAuthentication = async () => {
-            const token = Cookie.get('Token');
             setLoading(true);
 
-            if (token) {
-                const userAuthenticated = await checkUserAuthentication();
-                console.log(userAuthenticated)
-                if (userAuthenticated?.error === 'Token inválido ou expirado.') {
-                    setIsAuthenticated(false);
-                    router.replace('/GetStarted/getStarted');
-                } else {
-                    setIsAuthenticated(true);
-                    if (router.pathname === '/') {
+            try {
+                const token = Cookie.get('Token');
+                if (token) {
+                    const userAuthenticated = await checkUserAuthentication();
+                    console.log(userAuthenticated)
+                    if (userAuthenticated?.error === 'Token inválido ou expirado.') {
+                        setIsAuthenticated(false);
+                        Cookie.remove('Token')
+                        router.replace('/GetStarted/getStarted');
+                    } else {
+                        setIsAuthenticated(true);
                         router.replace('/Home/home');
                     }
+                } else {
+                    setIsAuthenticated(false);
+                    if (router.pathname !== '/Login/login' && router.pathname !== '/Signup/signup' && router.pathname !== '/VerifyAccount/verifyAccount' && router.pathname !== '/VerifyAccount/accountVerify') {
+                        router.replace('/GetStarted/getStarted');
+                    }
                 }
-            } else {
+            }
+            catch (error) {
+                console.error("Erro na autenticação:", error);
                 setIsAuthenticated(false);
-                if (router.pathname !== '/Login/login' && router.pathname !== '/Signup/signup' && router.pathname !== '/VerifyAccount/verifyAccount' && router.pathname !== '/VerifyAccount/accountVerify') {
-                    router.replace('/GetStarted/getStarted');
-                }
+                router.replace('/GetStarted/getStarted');
             }
 
             setLoading(false);

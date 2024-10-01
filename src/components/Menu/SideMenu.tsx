@@ -29,7 +29,7 @@ const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
             <div className={styles.sideContainer}>
                 <div className={`${styles.sidemenu}`}>
 
-                    <div className={`sticky flex justify-center text-2xl font-bold gap-2 ml-6 mt-4 ${styles.sideMenuTitle}`} >
+                    <div className={`flex justify-center text-2xl font-bold gap-2 ml-6 mt-4 ${styles.sideMenuTitle}`} >
                         <FontAwesomeIcon className='m-1' icon={pageActive?.icon} />
                         <h3>{pageActive?.nome}</h3>
                     </div>
@@ -70,19 +70,23 @@ const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
                                 </>
                             ))}
                         </ul>
-                        <div className={`mt-2 relative w-[100%] ${styles.line}`} />
+                        <div className={`mt-2 ${styles.line}`} />
 
-                        <div className='mt-6 ml-3'>
-                            <Link className={`flex justify-start gap-2`} href={'/menu/preferences'}>
-                                <i className={`mr-2 ${ativarSideMenu ? styles.collapsed : null}`}>
-                                    <FontAwesomeIcon className='mt-2' icon={faSliders} fontSize={20} />
-                                </i>
-                                {!ativarSideMenu ? <p className='mt-1 text-lg'>Preferences</p> : null}
-                            </Link>
+                        <div className='mt-4 ml-2'>
+                            <ul>
+                                <li>
+                                    <Link className={`flex justify-start gap-2 ${styles.item}`} href={'/menu/preferences'}>
+                                        <i className={`mr-2 ${ativarSideMenu ? styles.collapsed : null}`}>
+                                            <FontAwesomeIcon className='mt-2' icon={faSliders} fontSize={20} />
+                                        </i>
+                                        {!ativarSideMenu ? <p className='mt-1 text-lg'>Preferences</p> : null}
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
 
                     </div>
-                    <div className='-ml-4'>
+                    <div className='-ml-3'>
                         <button className={`absolute bottom-2`} onClick={Logout}>
                             <div className={`flex justify-start gap-4 ${styles.item}`}>
                                 <i className='mt-1'>

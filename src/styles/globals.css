@@ -25,3 +25,11 @@ body {
     text-wrap: balance;
   }
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}

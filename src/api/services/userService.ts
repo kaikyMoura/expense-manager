@@ -9,7 +9,7 @@ export const userLogin = async (usuario: IUserLogin) => {
         const token = response.data.data.token;
         console.log(token)
         if (token) {
-            Cookie.set('Token', token, { path: '/', secure: true, sameSite: 'Strict', httpOnly: true })
+            Cookie.set('Token', token, { path: '/', secure: true, sameSite: 'Strict'})
             return { sucess: true }
         }
         else {
@@ -35,7 +35,7 @@ export const getUser = async (): Promise<IUser> => {
         })
 }
 
-export const verifyAccount = async (jwtToken: string| string[] | undefined) => {
+export const verifyAccount = async (jwtToken: string | string[] | undefined): Promise<ApiResponse<any>> => {
     console.log(jwtToken)
     try {
         const response = await api.post('/users/verify-account', {}, {
@@ -44,10 +44,11 @@ export const verifyAccount = async (jwtToken: string| string[] | undefined) => {
             }
         })
         const token = response.data.data.token;
-        console.log(token)
+
         if (token) {
-            Cookie.set('Token', token, { path: '/', secure: true, sameSite: 'Strict', httpOnly: true })
-            return { sucess: true }
+            Cookie.set('Token', token, { path: '/', secure: true, sameSite: 'Strict'})
+            console.log(token)
+            return { success: true }
         }
         else {
             throw new Error('Token não recebido')

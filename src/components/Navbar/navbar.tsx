@@ -28,7 +28,8 @@ const NavBar = ({ titulo, openModal}: NavBarProps) => {
         setUser()
     }, [])
 
-    return (<>
+    return (
+    <>
         <div className={`flex ${styles.navbar}`}>
             <div className="flex items-center justify-between w-[100%]">
                 <div className="flex justify-start ml-2">
@@ -47,7 +48,7 @@ const NavBar = ({ titulo, openModal}: NavBarProps) => {
                             <FontAwesomeIcon icon={faUser} fontSize={16} />
                         </i>
                         <div className="">
-                            <p>{perfil?.name}</p>
+                            <p>{perfil?.name} {perfil?.lastName}</p>
                             <p className="text-sm font-light border-b-2 border-black">{perfil?.email}</p>
                         </div>
                     </div>

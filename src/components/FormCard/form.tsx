@@ -3,6 +3,7 @@ import styles from './form.module.css'
 
 interface FormProps {
     children: React.ReactNode[]
+    // className?: ""
     action?: string
     pages: number | any;
     currentPage: number | any;

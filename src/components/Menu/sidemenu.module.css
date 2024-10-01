@@ -1,6 +1,7 @@
 .sideContainer {
     overflow: hidden;
     position: relative;
+    max-width: 500px;;
 }
 
 .sidemenu {
@@ -109,6 +110,7 @@
 .line {
     background-color: rgb(151, 145, 145);
     height: 2px;
+    width: 100% !important;
 }
 
 .profileActions i {

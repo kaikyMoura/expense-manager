@@ -35,10 +35,13 @@ const Calendar = () => {
 
     const fetchExpenses = async () => {
         try {
-            const expenses = await getAllExpenses();
-            const days = expenses.map(expense => dayjs(expense.date));
-            setHighlightedDays(days);
-            console.log(days)
+            const data = await getAllExpenses()
+            console.log(data)
+            if (data.success === true) {
+                const days = data.data.map((expense: IExpense) => dayjs(expense.date));
+                setHighlightedDays(days);
+                console.log(days)
+            }
         } catch (error) {
             console.error('Failed to fetch expenses:', error);
         }

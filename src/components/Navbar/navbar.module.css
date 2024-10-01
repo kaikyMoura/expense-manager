@@ -1,24 +1,24 @@
 .navbar {
-    
     margin-top: 2em;
     z-index: 1000;
-    background-color: #d3d3d3;
+    background-color: #e0dfdf;
     border-radius: 8px;
     height: 3.75em;
     transition: 0.3s;
     position: fixed;
     justify-content: end;
+    box-shadow: 0 0 10px rgba(88, 88, 88, 0.1);
 }
 
 
 
-/* @media (max-width: 769px) and (min-height: 500px) {
+@media (min-width: 0px) and (max-width: 768px) {
     .navbar {
-        transform: scale(0.66);
-        width: 100%;
-        margin-left: 8em;
+        padding: 20px;
+        width: 80%;
+        margin-left: 16em;
     }
-} */
+}
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .navbar {
@@ -50,7 +50,7 @@
 
 .profile {
     border-radius: 9px;
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(255, 255, 255);
 }
 
 .profile p {
