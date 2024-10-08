@@ -44,10 +44,10 @@ const AccountVerify = () => {
                         <p className="mt-6 text-lg">Congratulations! Your account has been verified. You can now start making and managing your expenses history.</p>
                     </div>
                     <div>
-                        <Image className='mt-3 lg:ml-28 sm:ml-0 ' src={'/joy.png'} alt={'Free'} width={300} fontSize={220} />
+                        <Image className='mt-3 lg:ml-28 sm:ml-0 ' src={'/joy.png'} alt={'Free'} width={300} height={220} />
                     </div>
                     <div className="flex justify-center mt-8">
-                        <Button type={"primary"} text={"Go to the application"} width={400} fontSize={40} action={goToHome}/>
+                        <Button type={"primary"} text={"Go to the application"} width={400} height={40} action={goToHome}/>
                     </div>
                 </div>
             </div >
