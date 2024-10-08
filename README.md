@@ -69,6 +69,27 @@ Este projeto utiliza [Next.js](https://nextjs.org/), um framework React que faci
 Além do [TypeScript](https://www.typescriptlang.org/) como linguagem de desenvolvimento.
 
 
+## Ferramentas e bibliotecas:
+
+- [axios](https://axios-http.com/ptbr):
+É um cliente HTTP simples baseado em promessas para o navegador e para o node.js. Axios fornece uma biblioteca simples de usar em um pacote pequeno com uma grande interface.
+
+ - [js-cookie](https://github.com/js-cookie/js-cookie) :
+Biblioteca leve e simples para manipulação de cookies em JavaScript. Ela fornece uma API fácil de usar para criar, ler e excluir cookies, simplificando o processo de gerenciamento de cookies no navegador..
+
+- [tailwind](https://tailwindcss.com):
+Framework de CSS utilitário que permite a construção rápida de interfaces de usuário personalizadas.
+
+- [eslint](https://eslint.org):
+ Ferramenta de linting para JavaScript e outros ambientes que permite identificar e corrigir problemas no código.
+
+- [dayjs](https://day.js.org):
+Biblioteca JavaScript leve para manipulação e formatação de datas.
+
+- [material-ui](https://mui.com/material-ui):
+ Biblioteca de componentes de interface de usuário (UI) para React, baseada no Material Design do Google. 
+
+
 ## Deploy
 
 O deploy do projeto foi feito através da vercel e pode ser acessado ao [clicar aqui](https://expense-manager-mocha.vercel.app/)
