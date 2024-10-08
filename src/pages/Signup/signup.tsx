@@ -4,13 +4,13 @@ import Form from "@/components/FormCard/form";
 import Input from "@/components/Input/input";
 import Toolbar from "@/components/ToolBar/toolbar";
 import Loading from "@/utils/Loading/loading";
-import { faArrowLeft, faArrowRight, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { SetStateAction, useEffect, useState } from "react";
 import styles from './signup.module.css';
 import Link from "next/link";
+import { faUserCircle, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
     const [alerta, setAlerta] = useState(false)
@@ -100,9 +100,9 @@ const Signup = () => {
                     <div className="mt-2">
                         <div className="flex justify-center">
                             {tempImage ?
-                                <Image className="" src={tempImage} alt={"fafs"} width={120} height={120} />
+                                <Image className={styles.profileImage} src={tempImage} alt={"fafs"} width={100} height={100} />
                                 :
-                                <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} fontSize={120} />
+                                <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} height={20} />
                             }
                             <div className={styles.inputFile}>
                                 <p className="font-medium ml-3">Profile image</p>
@@ -113,12 +113,10 @@ const Signup = () => {
                             setName(e.target.value)} type={"text"} value={name} />
                         <Input label={"Last name"} placeholder={"lastname"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
                             setLastName(e.target.value)} type={"text"} value={lastname} />
-                        <div className="flex justify-center">
-                            <button onClick={() => handlePageChange(currentPage + 1)}>
-                                <FontAwesomeIcon icon={faArrowRight} />
-                            </button>
-                        </div>
 
+                        <div className="flex justify-center">
+                            <FontAwesomeIcon className="cursor-pointer" icon={faArrowRight} height={20}  onClick={() => handlePageChange(currentPage + 1)}/>
+                        </div>
                         <div className="mt-4 flex justify-center">
                             <p className="font-medium">Already have an account ?</p>
                             <Link className="ml-2" href="/Login/login">
@@ -129,7 +127,7 @@ const Signup = () => {
 
                     <div>
                         <button onClick={() => handlePageChange(currentPage - 1)}>
-                            <FontAwesomeIcon icon={faArrowLeft} />
+                            <FontAwesomeIcon icon={faArrowLeft} height={20}/>
                         </button>
                         <Input label={"Email"} placeholder={"email"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
                             setEmail(e.target.value)} type={"email"} value={email} />

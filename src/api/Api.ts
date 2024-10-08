@@ -2,8 +2,7 @@ import axios from "axios";
 import Cookie from 'js-cookie';
 
 const api = axios.create({
-  baseURL: 'https://backend-expensemanager.onrender.com',
-  //baseURL: 'http://localhost:8089',
+  baseURL: 'http://localhost:8089',
   headers: {
     'Content-Type': 'application/json'
   }

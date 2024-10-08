@@ -39,15 +39,6 @@
     align-items: center;
 }
 
-.navbar i {
-    display: flex;
-    width: 38px;
-    height: 36px;
-    border-radius: 46%;
-    justify-content: center;
-    background-color: #d3d3d3;
-}
-
 .profile {
     border-radius: 9px;
     background-color: rgb(255, 255, 255);

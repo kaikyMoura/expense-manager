@@ -16,20 +16,8 @@
   }
 }
 
-body {
-  
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
 }

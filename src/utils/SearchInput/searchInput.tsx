@@ -8,7 +8,7 @@ const SearchInput = () => {
             <div className={`${styles.container}`}>
                 <input className={`focus:outline-none ${styles.input}`} placeholder="buscar..." />
                 <button className={styles.searchButton}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <FontAwesomeIcon className='ml-2' icon={faMagnifyingGlass} height={24}/>
                 </button>
             </div>
         </>

@@ -18,8 +18,14 @@ div .input p {
 
 .profileIcon {
     color: #d3d3d3;
+    height: 140px;
 }
 
 .inputFile {
     margin-top: 2em;
+}
+
+.profileImage {
+    width: 100px;
+    height: 100px;
 }

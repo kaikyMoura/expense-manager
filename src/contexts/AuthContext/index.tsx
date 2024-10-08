@@ -1,19 +1,18 @@
 import { checkUserAuthentication } from "@/api/services/userService";
-import Loading from "@/utils/Loading/loading";
-import { useRouter } from "next/router";
-import { createContext, ReactNode, useEffect, useState } from "react";
-import Cookie from 'js-cookie';
-import React from "react";
 import PrivateLayout from "@/pages/privateLayout";
 import PublicLayout from "@/pages/publicLayout";
+import Cookie from 'js-cookie';
+import { useRouter } from "next/router";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
+import { useLoadingContext } from "../LoadingContext";
 
 
-interface AppContextProps {
+interface AuthContextProps {
     isAuthenticated: boolean | null;
     setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
-const AppContext = createContext<AppContextProps | undefined>(undefined)
+const AppContext = createContext<AuthContextProps | undefined>(undefined)
 
 const publicPages = ['/Login/login', '/Signup/signup', '/GetStarted/getStarted', '/VerifyAccount/verifyAccount', '/VerifyAccount/accountVerify']
 
@@ -25,11 +24,37 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const Layout = isPublicPage ? PublicLayout : PrivateLayout;
 
-    const [loading, setLoading] = useState<boolean | null>(null);
+    const { setLoading } = useLoadingContext()
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (setLoading) {
+                const handleRouteChange = () => {
+                    setLoading(true);
+                };
+
+                const handleRouteComplete = () => {
+                    setLoading(false);
+                };
+
+                router.events.on('routeChangeStart', handleRouteChange);
+                router.events.on('routeChangeComplete', handleRouteComplete);
+                router.events.on('routeChangeError', handleRouteComplete);
+
+                return () => {
+                    router.events.off('routeChangeStart', handleRouteChange);
+                    router.events.off('routeChangeComplete', handleRouteComplete);
+                    router.events.off('routeChangeError', handleRouteComplete);
+                };
+            }
+        }, 0);
+
+        return () => clearTimeout(timer);
+    }, [router, router.events, setLoading]);
+
 
     useEffect(() => {
         const handleAuthentication = async () => {
-            setLoading(true);
 
             try {
                 const token = Cookie.get('Token');
@@ -56,19 +81,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 setIsAuthenticated(false);
                 router.replace('/GetStarted/getStarted');
             }
-
-            setLoading(false);
         };
 
         handleAuthentication();
     }, [router.pathname]);
-
-    if (loading) {
-        return <Loading />;
-    }
-    if (isAuthenticated == null) {
-        return <Loading />;
-    }
 
     return (
         <AppContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>

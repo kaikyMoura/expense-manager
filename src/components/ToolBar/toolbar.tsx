@@ -8,7 +8,7 @@ const Toolbar = () => {
     return (
         <div className={styles.toolbarcontainer}>
             <Link className='flex ml-2 mt-4' href={'/GetStarted/getStarted'}>
-                <FontAwesomeIcon className='mt-1' icon={faWallet} fontSize={20} />
+                <FontAwesomeIcon className={`mt-1 ${styles.walletIcon}`} icon={faWallet} />
                 <h2 className="ml-1 font-normal text-xl">Expense Manager</h2>
             </Link>
         </div>

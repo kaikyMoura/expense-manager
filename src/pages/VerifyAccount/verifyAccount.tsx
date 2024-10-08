@@ -2,10 +2,12 @@ import Button from "@/components/Button/button";
 import Toolbar from "@/components/ToolBar/toolbar";
 import styles from './verifyAccount.module.css';
 import Image from 'next/image'
+import { useState } from "react";
 
 
 const VerifyAccount = () => {
-    console.log('dsfgsdgsd')
+    const [ openEmailInput ] = useState()
+
     return (
         <>
             <Toolbar />
