@@ -76,7 +76,7 @@ const ExpenseModal = ({ Close }: AlertProps) => {
     return (
         <div className={`${styles.modalContainer}`} onClick={(e) => e.stopPropagation()}>
             <button onClick={Close} className={`${styles.closeButton}`}>
-                <FontAwesomeIcon icon={faX} height={20} />
+                <FontAwesomeIcon icon={faX} fontSize={20} />
             </button>
             <form className={`${styles.modal} w-full`}>
                 <div className='flex justify-center mt-2 ml-2'>

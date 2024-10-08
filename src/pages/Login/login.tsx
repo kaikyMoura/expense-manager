@@ -53,7 +53,7 @@ const LoginPage = () => {
                     } type={"password"} />
                     <br />
                     <div className={`flex justify-center ${styles.loginButton}`}>
-                        <Button text={"salvar"} width={280} height={25} type={"primary"} action={login} />
+                        <Button text={"salvar"} width={280} fontSize={25} type={"primary"} action={login} />
                     </div>
                     <br />
                     <div className="flex justify-center">

@@ -102,7 +102,7 @@ const Signup = () => {
                             {tempImage ?
                                 <Image className={styles.profileImage} src={tempImage} alt={"fafs"} width={100} height={100} />
                                 :
-                                <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} height={20} />
+                                <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} fontSize={20} />
                             }
                             <div className={styles.inputFile}>
                                 <p className="font-medium ml-3">Profile image</p>
@@ -115,7 +115,7 @@ const Signup = () => {
                             setLastName(e.target.value)} type={"text"} value={lastname} />
 
                         <div className="flex justify-center">
-                            <FontAwesomeIcon className="cursor-pointer" icon={faArrowRight} height={20}  onClick={() => handlePageChange(currentPage + 1)}/>
+                            <FontAwesomeIcon className="cursor-pointer" icon={faArrowRight} fontSize={20}  onClick={() => handlePageChange(currentPage + 1)}/>
                         </div>
                         <div className="mt-4 flex justify-center">
                             <p className="font-medium">Already have an account ?</p>
@@ -127,7 +127,7 @@ const Signup = () => {
 
                     <div>
                         <button onClick={() => handlePageChange(currentPage - 1)}>
-                            <FontAwesomeIcon icon={faArrowLeft} height={20}/>
+                            <FontAwesomeIcon icon={faArrowLeft} fontSize={20}/>
                         </button>
                         <Input label={"Email"} placeholder={"email"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
                             setEmail(e.target.value)} type={"email"} value={email} />

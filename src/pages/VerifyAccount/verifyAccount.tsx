@@ -6,7 +6,7 @@ import { useState } from "react";
 
 
 const VerifyAccount = () => {
-    const [ openEmailInput ] = useState()
+    const [openEmailInput] = useState()
 
     return (
         <>
