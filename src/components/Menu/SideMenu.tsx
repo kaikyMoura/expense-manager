@@ -42,7 +42,7 @@ const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
                                     <li className={`mt-1 ${router.pathname == item.link ? styles.selected : null}`}>
                                         <Link className={`flex justify-start gap-2 ${styles.item}`} href={item.link}>
                                             <i className={`mr-2 mt-1 ${ativarSideMenu ? styles.collapsed : null}`}>
-                                                <FontAwesomeIcon className='m-1' icon={item.icon} fontSize={20} />
+                                                <FontAwesomeIcon className='m-1' icon={item.icon} height={20} />
                                             </i>
                                             {!ativarSideMenu ? <p className='text-lg'>{item.nome}</p> : null}
                                         </Link>
@@ -61,7 +61,7 @@ const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
                                         <li className={`mt-1 ${router.pathname == item.link ? styles.selected : null}`}>
                                             <Link className={`flex justify-start gap-2 ${styles.item}`} href={item.link}>
                                                 <i className={`mr-2 mt-1 ${ativarSideMenu ? styles.collapsed : null}`}>
-                                                    <FontAwesomeIcon className='m-1 mt-2' icon={item.icon} fontSize={20} />
+                                                    <FontAwesomeIcon className='m-1 mt-2' icon={item.icon} height={20} />
                                                 </i>
                                                 {!ativarSideMenu ? <p className='text-lg'>{item.nome}</p> : null}
                                             </Link>
@@ -77,7 +77,7 @@ const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
                                 <li>
                                     <Link className={`flex justify-start gap-2 ${styles.item}`} href={'/menu/preferences'}>
                                         <i className={`mr-2 ${ativarSideMenu ? styles.collapsed : null}`}>
-                                            <FontAwesomeIcon className='mt-2' icon={faSliders} fontSize={20} />
+                                            <FontAwesomeIcon className='mt-2' icon={faSliders} height={20} />
                                         </i>
                                         {!ativarSideMenu ? <p className='mt-1 text-lg'>Preferences</p> : null}
                                     </Link>
@@ -90,7 +90,7 @@ const SideMenu = ({ items, ativarSideMenu, profiles }: SideMenuProps) => {
                         <button className={`absolute bottom-2`} onClick={Logout}>
                             <div className={`flex justify-start gap-4 ${styles.item}`}>
                                 <i className='mt-1'>
-                                    <FontAwesomeIcon icon={faArrowRightFromBracket} fontSize={20} />
+                                    <FontAwesomeIcon icon={faArrowRightFromBracket} height={20} />
                                 </i>
                                 {!ativarSideMenu ? <p className='text-lg'>Sign out</p> : null}
                             </div>
