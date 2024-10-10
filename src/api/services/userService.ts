@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import api from "../Api";
+import api from "../api";
 import Cookie from 'js-cookie';
 import { headers } from "next/headers";
 

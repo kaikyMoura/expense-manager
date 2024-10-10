@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios"
-import api from "../Api"
+import api from "../api"
 
 export const addExpense = async (expense: IExpense): Promise<unknown> => {
     try {
