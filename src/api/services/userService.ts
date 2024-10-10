@@ -7,7 +7,6 @@ export const userLogin = async (usuario: IUserLogin) => {
     try {
         const response = await api.post('/users/login', usuario)
         const token = response.data.data.token;
-        console.log(token)
         if (token) {
             Cookie.set('Token', token, { path: '/', secure: true, sameSite: 'Strict'})
             return { sucess: true }
@@ -36,7 +35,6 @@ export const getUser = async (): Promise<IUser> => {
 }
 
 export const verifyAccount = async (jwtToken: string | string[] | undefined): Promise<ApiResponse<any>> => {
-    console.log(jwtToken)
     try {
         const response = await api.post('/users/verify-account', {}, {
             headers: {
@@ -47,7 +45,6 @@ export const verifyAccount = async (jwtToken: string | string[] | undefined): Pr
 
         if (token) {
             Cookie.set('Token', token, { path: '/', secure: true, sameSite: 'Strict'})
-            console.log(token)
             return { success: true }
         }
         else {
