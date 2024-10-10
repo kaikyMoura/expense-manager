@@ -36,7 +36,7 @@ const Home = () => {
                 <div className={`-mt-16 ${styles.expenses}`}>
                     <div className='flex justify-between ml-6 mt-5'>
                         <h3 className='font-bold'>My Expenses ({expenses.length})</h3>
-                        <FontAwesomeIcon className='mr-7' icon={faEllipsisVertical} size="lg" />
+                        <FontAwesomeIcon className='mr-7' icon={faEllipsisVertical} height={20} />
                     </div>
                     <div className={`mt-3 relative ${styles.line}`} />
                     {expenses && expenses.map(expense =>

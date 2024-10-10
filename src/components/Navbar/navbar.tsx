@@ -41,7 +41,7 @@ const NavBar = ({ titulo, openModal }: NavBarProps) => {
                     <div className="flex items-center mr-2 gap-6">
                         <Button className={`p-2 ${styles.profile}`} type={"secondary"} text={"Add expense"} action={openModal} />
                         <button className="flex items-center">
-                            <FontAwesomeIcon icon={faBell} size="lg" />
+                            <FontAwesomeIcon icon={faBell} height={20} />
                         </button>
                         <div className={`flex items-center gap-2 p-1 w-42 ${styles.profile}`}>
                             <i className="flex items-center">

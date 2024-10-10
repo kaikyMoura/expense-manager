@@ -102,7 +102,7 @@ const Signup = () => {
                             {tempImage ?
                                 <Image className={styles.profileImage} src={tempImage} alt={"fafs"} width={100} height={100} />
                                 :
-                                <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} size="lg" />
+                                <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} height={20} />
                             }
                             <div className={styles.inputFile}>
                                 <p className="font-medium ml-3">Profile image</p>
@@ -127,7 +127,7 @@ const Signup = () => {
 
                     <div>
                         <button onClick={() => handlePageChange(currentPage - 1)}>
-                            <FontAwesomeIcon icon={faArrowLeft} size="lg"/>
+                            <FontAwesomeIcon icon={faArrowLeft} height={20}/>
                         </button>
                         <Input label={"Email"} placeholder={"email"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
                             setEmail(e.target.value)} type={"email"} value={email} />
