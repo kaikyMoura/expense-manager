@@ -9,11 +9,11 @@ interface AlertProps {
     title: string,
     image?: string
     text: string | undefined
-    action?: () => void 
+    action?: () => void
 }
 
 const Alert = ({ Close, title, type, text, action }: AlertProps) => {
-    
+
     let color
     switch (type) {
         case "error":
@@ -26,20 +26,20 @@ const Alert = ({ Close, title, type, text, action }: AlertProps) => {
             color = "lightblue"
     }
 
-    useEffect(()=> {
+    useEffect(() => {
 
-    },[color])
+    }, [color])
 
     return (
         <>
-            <div className={`${styles.modalBlur}`} style={{borderColor: color}} onClick={(e) => e.stopPropagation()}>
-                <button onClick={Close}><FontAwesomeIcon icon={faX} color={"black"} height={20}/></button>
+            <div className={`${styles.modalBlur}`} style={{ borderColor: color }} onClick={(e) => e.stopPropagation()}>
+                <button onClick={Close}><FontAwesomeIcon icon={faX} color={"black"} height={20} /></button>
                 <div>
-                    <h2 className="text-lg" style={{color: color}}>{title}</h2>
-
-                    <p className="">{text}</p>
-                
-                    <button onClick={action}/>
+                    <h2 className="text-lg" style={{ color: color }}>{title}</h2>
+                    <div className="flex items-center justify-center">
+                        <p className="font-lg">{text}</p>
+                    </div>
+                    <button onClick={action} />
                 </div>
             </div>
         </>

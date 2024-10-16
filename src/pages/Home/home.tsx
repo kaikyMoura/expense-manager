@@ -10,10 +10,12 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './home.module.css';
 import React from 'react';
+import Alert from '@/utils/Notification/notification';
 
 const Home = () => {
     const [expenses, setExpenses] = useState<IExpense[]>([])
     const [categories, setCategories] = useState<Category[]>([])
+    const [ alert , setAlert] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,6 +28,10 @@ const Home = () => {
         }
         fetchData()
     }, [])
+
+    const Close = () => {
+        setAlert(false)
+    }
 
     return (
         <>
@@ -109,11 +115,13 @@ const Home = () => {
                             </>
                         ))}
                         <div className='mt-4'>
-                            <Button type={'secondary'} text={'New'} />
+                            <Button type={'secondary'} text={'New'} action={() => setAlert(true)}/>
                         </div>
                     </div>
                 </div>
             </div >
+            
+            { alert ?<Alert type={'error'} title={'Error!'} text={"sdsdddddddddddsassssssssda"} Close={Close}/>: null }
         </>
     )
 }

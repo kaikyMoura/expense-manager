@@ -3,9 +3,20 @@ import api from "../Api"
 
 export const addExpense = async (expense: IExpense): Promise<unknown> => {
     try {
-        return await api.post('/expense/create', expense)
-    } catch (e) {
-        console.error("Erro : ", e)
+        await api.post('/expense/create')
+        return {
+            success: true,
+        }
+    } catch (err) {
+        if (axios.isAxiosError(err)) {
+            const axiosError = err as AxiosError<ErrorResponse>;
+            if (axiosError.response) {
+                return {
+                    success: false,
+                    error: axiosError.response.data.details
+                };
+            }
+        }
     }
 }
 

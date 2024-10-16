@@ -8,6 +8,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { SetStateAction, useEffect, useState } from 'react';
 import styles from './expenseModal.module.css';
+import Loading from '../Loading/loading';
+import { useLoadingContext } from '@/contexts/LoadingContext';
 
 interface AlertProps {
     Close?: Function | any,
@@ -15,6 +17,8 @@ interface AlertProps {
 }
 
 const ExpenseModal = ({ Close }: AlertProps) => {
+
+    const { setLoading } = useLoadingContext()
 
     const [id, setId] = useState(Number)
     const [name, setName] = useState("")
@@ -47,11 +51,12 @@ const ExpenseModal = ({ Close }: AlertProps) => {
             priority: priority
         }
 
-
-        await addExpense(expense).then(() =>
-            //router.reload()
+        setLoading(true)
+        await addExpense(expense).then(() => {
+            setLoading(false)
             console.log(expense)
-        ).catch((erro: any) => {
+        }).catch((erro: any) => {
+            setLoading(false)
             console.error("Erro: ", erro)
         })
     }
@@ -110,14 +115,14 @@ const ExpenseModal = ({ Close }: AlertProps) => {
                     </div> */}
 
                     {/* {category === "new" && ( */}
-                        <div className="">
-                            <Input
-                                placeholder={'New category'}
-                                type={'text'}
-                                label={'Category'}
-                                onChange={(e: { target: { value: SetStateAction<string> } }) => setCategory(e.target.value)}
-                            />
-                        </div>
+                    <div className="">
+                        <Input
+                            placeholder={'New category'}
+                            type={'text'}
+                            label={'Category'}
+                            onChange={(e: { target: { value: SetStateAction<string> } }) => setCategory(e.target.value)}
+                        />
+                    </div>
                     {/* )} */}
                 </div>
                 <div className='flex justify-center gap-6 mt-2 mr-6'>

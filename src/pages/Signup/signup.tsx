@@ -58,12 +58,12 @@ const Signup = () => {
         console.log(image)
         if (password != repeatPassword) {
             setErrorAlert(true)
-            setText("As senhas estão diferentes")
+            setText("The passwords do not match")
         }
 
         if (email != repeatEmail) {
             setErrorAlert(true)
-            setText("Os campos de email estão diferentes")
+            setText("The email fields are different")
         }
 
         const usuario: IUserLogin = {
@@ -78,7 +78,7 @@ const Signup = () => {
         setCarregando(true)
         const response = await createUser(usuario)
         if (response.success === true) {
-            setText("Usuário criado com sucesso!")
+            setText("User created with success!")
             setSucessAlert(true)
             setCarregando(false)
             router.push('/VerifyAccount/verifyAccount')
@@ -172,8 +172,8 @@ const Signup = () => {
             </div>
 
             {carregando ? <Loading /> : null}
-            {errorAlert ? <Alert type={"error"} title={"Erro!"} text={text} Close={Close}/> : null}
-            {sucessAlert ? <Alert type={"sucess"} title={"Sucesso!"} text={text} Close={Close}/> : null}
+            {errorAlert ? <Alert type={"error"} title={"Error!"} text={text} Close={Close}/> : null}
+            {sucessAlert ? <Alert type={"sucess"} title={"Sucess!"} text={text} Close={Close}/> : null}
         </>
     )
 }
