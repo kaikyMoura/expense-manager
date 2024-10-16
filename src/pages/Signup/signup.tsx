@@ -4,17 +4,21 @@ import Form from "@/components/FormCard/form";
 import Input from "@/components/Input/input";
 import Toolbar from "@/components/ToolBar/toolbar";
 import Loading from "@/utils/Loading/loading";
+import Alert from "@/utils/Notification/notification";
+import { faArrowLeft, faArrowRight, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { SetStateAction, useEffect, useState } from "react";
 import styles from './signup.module.css';
-import Link from "next/link";
-import { faUserCircle, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
-    const [alerta, setAlerta] = useState(false)
+    const [sucessAlert, setSucessAlert] = useState(false)
+    const [errorAlert, setErrorAlert] = useState(false)
     const [carregando, setCarregando] = useState(false)
+
+    const [text, setText] = useState<string | undefined>('')
 
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -43,39 +47,47 @@ const Signup = () => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 console.log(reader.result);
+
                 setImage(reader.result);
             };
+            reader.readAsDataURL(file);
         }
     }
 
     const createAccount = async () => {
-
+        console.log(image)
         if (password != repeatPassword) {
-            setAlerta(true)
+            setErrorAlert(true)
+            setText("As senhas estão diferentes")
         }
 
         if (email != repeatEmail) {
-            setAlerta(true)
+            setErrorAlert(true)
+            setText("Os campos de email estão diferentes")
         }
 
         const usuario: IUserLogin = {
             name: name,
             lastName: lastname,
-            image: image,
+            profileImage: image,
             email: email,
             password: password
         }
 
         console.log(usuario)
         setCarregando(true)
-        await createUser(usuario).then(() => {
-            setAlerta(true)
+        const response = await createUser(usuario)
+        if (response.success === true) {
+            setText("Usuário criado com sucesso!")
+            setSucessAlert(true)
             setCarregando(false)
             router.push('/VerifyAccount/verifyAccount')
-        }).catch((erro) => {
+        }
+        else {
+            setText(response.error)
+            setErrorAlert(true)
             setCarregando(false)
-            console.error("Erro: ", erro)
-        })
+        }
     }
 
     const handlePageChange = (page: number) => {
@@ -89,6 +101,11 @@ const Signup = () => {
             }
         };
     }, [tempImage]);
+
+    const Close = () => {
+        setErrorAlert(false)
+        setSucessAlert(false)
+    }
 
     return (
         <>
@@ -115,7 +132,7 @@ const Signup = () => {
                             setLastName(e.target.value)} type={"text"} value={lastname} />
 
                         <div className="flex justify-center">
-                            <FontAwesomeIcon className="cursor-pointer" icon={faArrowRight} height={20}  onClick={() => handlePageChange(currentPage + 1)}/>
+                            <FontAwesomeIcon className="cursor-pointer" icon={faArrowRight} height={20} onClick={() => handlePageChange(currentPage + 1)} />
                         </div>
                         <div className="mt-4 flex justify-center">
                             <p className="font-medium">Already have an account ?</p>
@@ -127,7 +144,7 @@ const Signup = () => {
 
                     <div>
                         <button onClick={() => handlePageChange(currentPage - 1)}>
-                            <FontAwesomeIcon icon={faArrowLeft} height={20}/>
+                            <FontAwesomeIcon icon={faArrowLeft} height={20} />
                         </button>
                         <Input label={"Email"} placeholder={"email"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
                             setEmail(e.target.value)} type={"email"} value={email} />
@@ -155,6 +172,8 @@ const Signup = () => {
             </div>
 
             {carregando ? <Loading /> : null}
+            {errorAlert ? <Alert type={"error"} title={"Erro!"} text={text} Close={Close}/> : null}
+            {sucessAlert ? <Alert type={"sucess"} title={"Sucesso!"} text={text} Close={Close}/> : null}
         </>
     )
 }

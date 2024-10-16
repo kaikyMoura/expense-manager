@@ -8,7 +8,7 @@ interface AlertProps {
     Close?: Function | any,
     title: string,
     image?: string
-    text: string
+    text: string | undefined
     action?: () => void 
 }
 
@@ -32,8 +32,8 @@ const Alert = ({ Close, title, type, text, action }: AlertProps) => {
 
     return (
         <>
-            <div className={`${styles.modalBlur}`} style={{borderColor: color}}>
-                <button onClick={Close}><FontAwesomeIcon icon={faX} color={color}/></button>
+            <div className={`${styles.modalBlur}`} style={{borderColor: color}} onClick={(e) => e.stopPropagation()}>
+                <button onClick={Close}><FontAwesomeIcon icon={faX} color={"black"} height={20}/></button>
                 <div>
                     <h2 className="text-lg" style={{color: color}}>{title}</h2>
 

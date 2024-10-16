@@ -3,6 +3,7 @@
     "lib": ["dom", "dom.iterable", "ESNext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "target": "ES6",
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,

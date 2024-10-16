@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookie from 'js-cookie';
 
 const api = axios.create({
-  baseURL: 'https://valiant-acumen-438017-u5.rj.r.appspot.com',
+  baseURL: 'https://backend-expensemanager-315652357407.us-central1.run.app',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -10,7 +10,6 @@ const api = axios.create({
 
 api.interceptors.request.use(config => {
   const token = Cookie.get('Token');
-  console.log(token)
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`;
   }

@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import Button from "../Button/button"
 import styles from './navbar.module.css'
+import Image from "next/image"
 
 interface NavBarProps {
     profile?: () => void,
@@ -18,12 +19,24 @@ const NavBar = ({ titulo, openModal }: NavBarProps) => {
     const router = useRouter()
 
     const [perfil, setPerfil] = useState<IUser>()
+    const [profileImage, setProfileImage] = useState<String | ArrayBuffer | unknown>()
 
     useEffect(() => {
         const setUser = async () => {
             const user = await getUser()
             console.log(user)
             setPerfil(user)
+
+            if (!user.image) {
+                console.error("URL da imagem não foi fornecida.");
+                return;
+            }
+
+            const response = await fetch(user.image);
+            const imageBlob = await response.blob();
+            const imageObjectUrl = URL.createObjectURL(imageBlob);
+            console.log(imageObjectUrl);
+            setProfileImage(imageObjectUrl)
         }
         setUser()
     }, [])
@@ -45,7 +58,11 @@ const NavBar = ({ titulo, openModal }: NavBarProps) => {
                         </button>
                         <div className={`flex items-center gap-2 p-1 w-42 ${styles.profile}`}>
                             <i className="flex items-center">
-                                <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} size='2x' color="grey"/>
+                                {/* {perfil?.image ?
+                                    <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} size='2x' color="grey" />
+                                    :
+                                    <Image className={styles.profileIcon} src={perfil?.image} alt={"fafs"} width={100} height={100} />
+                                } */}
                             </i>
                             <div className="">
                                 <p>{perfil?.name} {perfil?.lastName}</p>

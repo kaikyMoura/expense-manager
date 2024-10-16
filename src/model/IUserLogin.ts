@@ -1,7 +1,7 @@
 interface IUserLogin {
     name?: string,
     lastName?: string,
-    image?: string | ArrayBuffer | null,
+    profileImage?: string | ArrayBuffer | null | unknown,
     email: string,
     password: string
 }
