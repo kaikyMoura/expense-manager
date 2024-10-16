@@ -58,7 +58,7 @@ const LoginPage = () => {
                     <br />
                     <div className="flex justify-center">
                         <p className="font-medium">First acess ?</p>
-                        <Link className="ml-2" href="/createUserPage">
+                        <Link className="ml-2" href="/Signup/signup">
                             <p className="font-medium">click here</p>
                         </Link>
                     </div>

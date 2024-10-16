@@ -26,8 +26,8 @@ const AccountVerify = () => {
         verify()
     }, [token])
 
-    const goToHome = () => {
-        router.push('/Home/home')
+    const goToLogin = () => {
+        router.push('/Login/login')
     }
 
     if (carregando == true) {
@@ -47,7 +47,7 @@ const AccountVerify = () => {
                         <Image className='mt-3 lg:ml-28 sm:ml-0 ' src={'/joy.png'} alt={'Free'} width={300} height={220} />
                     </div>
                     <div className="flex justify-center mt-8">
-                        <Button type={"primary"} text={"Go to the application"} width={400} height={40} action={goToHome}/>
+                        <Button type={"primary"} text={"Go to login"} width={400} height={40} action={goToLogin}/>
                     </div>
                 </div>
             </div >

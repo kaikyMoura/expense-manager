@@ -32,13 +32,18 @@ export const createUser = async (usuario: IUserLogin) => {
     }
 }
 
-export const getUser = async (): Promise<IUser> => {
-    return await api.get('/users/auth/user').then(response => {
-        return response.data.data
-    })
-        .catch((e) => {
-            console.log(e)
-        })
+export const getUser = async (): Promise<ApiResponse<IUser>> => {
+    try {
+        const response = await api.get('/users/auth/user')
+        return {
+            success: true,
+            data: response.data.data
+        }
+    }
+    catch (error) {
+        const axiosError = error as AxiosError<ErrorResponse>;
+        return { success: false, error: axiosError.response?.data.details };
+    }
 }
 
 export const verifyAccount = async (jwtToken: string | string[] | undefined): Promise<ApiResponse<unknown>> => {

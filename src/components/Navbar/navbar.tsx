@@ -24,19 +24,20 @@ const NavBar = ({ titulo, openModal }: NavBarProps) => {
     useEffect(() => {
         const setUser = async () => {
             const user = await getUser()
-            console.log(user)
-            setPerfil(user)
+            console.log(user.data)
+            setPerfil(user.data)
 
-            if (!user.image) {
+            console.log('Image URL:', user.data?.image);
+            if (!user.data?.image) {
                 console.error("URL da imagem não foi fornecida.");
                 return;
             }
 
-            const response = await fetch(user.image);
-            const imageBlob = await response.blob();
-            const imageObjectUrl = URL.createObjectURL(imageBlob);
-            console.log(imageObjectUrl);
-            setProfileImage(imageObjectUrl)
+            // const response = await fetch(user.data?.image);
+            // const imageBlob = await response.blob();
+            // const imageObjectUrl = URL.createObjectURL(imageBlob);
+            // console.log(imageObjectUrl);
+            // setProfileImage(imageObjectUrl)
         }
         setUser()
     }, [])
@@ -58,11 +59,11 @@ const NavBar = ({ titulo, openModal }: NavBarProps) => {
                         </button>
                         <div className={`flex items-center gap-2 p-1 w-42 ${styles.profile}`}>
                             <i className="flex items-center">
-                                {/* {perfil?.image ?
-                                    <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} size='2x' color="grey" />
+                                {perfil?.image ?
+                                    <Image className={styles.profileIcon} src={`data:image/jpeg;base64,${perfil?.image}`} alt={"fafs"} width={32} height={32} />
                                     :
-                                    <Image className={styles.profileIcon} src={perfil?.image} alt={"fafs"} width={100} height={100} />
-                                } */}
+                                    <FontAwesomeIcon className={styles.profileIcon} icon={faUserCircle} height={20} color="grey" />
+                                }
                             </i>
                             <div className="">
                                 <p>{perfil?.name} {perfil?.lastName}</p>
