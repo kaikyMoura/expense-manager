@@ -32,12 +32,6 @@ const NavBar = ({ titulo, openModal }: NavBarProps) => {
                 console.error("URL da imagem não foi fornecida.");
                 return;
             }
-
-            // const response = await fetch(user.data?.image);
-            // const imageBlob = await response.blob();
-            // const imageObjectUrl = URL.createObjectURL(imageBlob);
-            // console.log(imageObjectUrl);
-            // setProfileImage(imageObjectUrl)
         }
         setUser()
     }, [])
@@ -48,9 +42,6 @@ const NavBar = ({ titulo, openModal }: NavBarProps) => {
                 <div className="flex items-center justify-between w-[100%]">
                     <div className="flex justify-start ml-2">
                         <h3 className="font-medium text-lg">{titulo}</h3>
-                    </div>
-                    <div className="">
-                        <SearchInput />
                     </div>
                     <div className="flex items-center mr-2 gap-6">
                         <Button className={`p-2 ${styles.profile}`} type={"secondary"} text={"Add expense"} action={openModal} />

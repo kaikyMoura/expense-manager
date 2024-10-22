@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import api from "../api";
+import api from "../apiConnection";
 import Cookie from 'js-cookie';
 
 export const userLogin = async (usuario: IUserLogin) => {

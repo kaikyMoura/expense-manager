@@ -1,6 +1,7 @@
 import { addExpense, getExpensesCategories } from '@/api/services/expenseService';
 import Button from '@/components/Button/button';
 import Input from '@/components/Input/input';
+import { useLoadingContext } from '@/contexts/LoadingContext';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -8,8 +9,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { SetStateAction, useEffect, useState } from 'react';
 import styles from './expenseModal.module.css';
-import Loading from '../Loading/loading';
-import { useLoadingContext } from '@/contexts/LoadingContext';
 
 interface AlertProps {
     Close?: Function | any,
