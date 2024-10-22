@@ -78,12 +78,13 @@ const Signup = () => {
         setCarregando(true)
         const response = await createUser(usuario)
         if (response.success === true) {
-            setText("User created with success!")
-            setSucessAlert(true)
+            // setText("User created with success!")
+            // setSucessAlert(true)
             setCarregando(false)
             router.push('/VerifyAccount/verifyAccount')
         }
         else {
+            console.log(response.error)
             setText(response.error)
             setErrorAlert(true)
             setCarregando(false)

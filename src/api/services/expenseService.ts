@@ -1,9 +1,9 @@
 import axios, { AxiosError } from "axios"
-import api from "../Api"
+import api from "../api"
 
 export const addExpense = async (expense: IExpense): Promise<unknown> => {
     try {
-        await api.post('/expense/create')
+        await api.post('/expense/create', expense)
         return {
             success: true,
         }
@@ -42,7 +42,7 @@ export const getAllExpenses = async () => {
         error: "Erro interno no servidor"
     }
 }
-export const getExpensesCategories = async () => {
+export const getExpensesCategories = async (): Promise<ApiResponse<Category[]>> => {
     try {
         const response = await api.get('/expense/list/categories')
         return {

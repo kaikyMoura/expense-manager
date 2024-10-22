@@ -68,7 +68,6 @@ const Calendar = () => {
                             border: '1px solid',
                         },
                         '.Mui-selected': {
-                            borderRadius: '10px',
                             backgroundColor: '#000000'
                         },
                         '.MuiDateCalendar-root': {

@@ -67,7 +67,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                         router.replace('/GetStarted/getStarted');
                     } else {
                         setIsAuthenticated(true);
-                        router.replace('/Home/home');
+                        if (router.pathname === '/Home/Home') {
+                            router.replace('/Home/home');
+                        }
+                        else {
+                            router.replace(router.pathname)
+                        }
                     }
                 } else {
                     setIsAuthenticated(false);

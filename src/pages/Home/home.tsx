@@ -2,20 +2,18 @@
 import { getAllExpenses, getExpensesCategories } from '@/api/services/expenseService';
 import Button from '@/components/Button/button';
 import Calendar from '@/components/CalenderDays/calender';
-import { faChevronRight, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import Alert from '@/utils/Notification/notification';
+import { faChevronRight, faEllipsisVertical, faEye, faTags } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Checkbox } from '@mui/material';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './home.module.css';
-import React from 'react';
-import Alert from '@/utils/Notification/notification';
 
 const Home = () => {
     const [expenses, setExpenses] = useState<IExpense[]>([])
     const [categories, setCategories] = useState<Category[]>([])
-    const [ alert , setAlert] = useState(false)
+    const [alert, setAlert] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,7 +22,11 @@ const Home = () => {
             if (data.success === true) {
                 setExpenses(data.data)
             }
-            //setCategories(await getExpensesCategories())
+
+            const response = await getExpensesCategories()
+            if (response.success === true && response.data) {
+                setCategories(response.data)
+            }
         }
         fetchData()
     }, [])
@@ -45,29 +47,24 @@ const Home = () => {
                         <FontAwesomeIcon className='mr-7' icon={faEllipsisVertical} height={20} />
                     </div>
                     <div className={`mt-3 relative ${styles.line}`} />
-                    {expenses && expenses.map(expense =>
-                        <>
-                            <ul className='mt-2'>
-                                <li key={expense?.id} className='flex'>
-                                    <Checkbox color='default' size='medium' sx={{
-                                        color: 'black',
-                                        '&.Mui-checked': {
-                                            color: 'black'
-                                        }
-                                    }} checked={true} onClick={() => console.log('fdsds')} />
-                                    <Link className='flex justify-end' href={'/Expense/expenses'}>
-                                        <p className='flex items-center font-medium text-lg'>{expense.name}</p>
-                                        {typeof expense.date === 'object' && dayjs.isDayjs(expense.date) ?
-                                            <p className='flex items-center ml-48 font-bold'>{expense.date.toString()}</p>
-                                            :
-                                            <p className='flex items-center ml-44 font-bold'>{expense.date}</p>
-                                        }
-                                    </Link>
-                                </li>
-                                <div className={`mt-2 ${styles.line}`} />
-                            </ul >
-                        </>
-                    ).slice(0, 4)}
+
+                    <ul className='mt-2'>
+                        {expenses && expenses.map(expense =>
+                            <li key={expense?.id} className='flex items-center p-2 mt-1'>
+                                <FontAwesomeIcon className='mr-4 cursor-pointer' icon={faEye} height={20} />
+                                <Link className='flex justify-end' href={'/Expense/expenses'}>
+                                    <p className='flex items-center font-medium text-lg'>{expense.name}</p>
+                                    {typeof expense.date === 'object' && dayjs.isDayjs(expense.date) ?
+                                        <p className='flex items-center ml-48 font-bold'>{expense.date.toString()}</p>
+                                        :
+                                        <p className='flex items-center justify-end ml-44 font-bold'>{expense.date}</p>
+                                    }
+                                </Link>
+                            </li>
+                        ).slice(0, 4)}
+                        <div className={`mt-2 ${styles.line}`} />
+                    </ul >
+
                     <Link className='flex justify-center mt-2' href={'/Expense/expenses'}>
                         <p>show more</p>
                     </Link>
@@ -102,26 +99,30 @@ const Home = () => {
                     </div>
                 </div>
                 <div className={`${styles.expensesCategories}`}>
-                    <div>
-                        <h3 className='flex justify-start mt-5 ml-4 font-bold'>Expenses categories</h3>
+                    <div >
+                        <div className='mt-5 flex justify-start ml-4'>
+                            <FontAwesomeIcon className='mt-0.5' icon={faTags} height={20} />
+                            <h3 className='ml-2 font-bold'>Expenses categories</h3>
+                        </div>
                         <div className={`mt-3 ${styles.line}`} />
-                        {categories.map(cat => (
-                            <>
-                                <ul>
-                                    <li>
-                                        <p>{cat.name}</p>
-                                    </li>
-                                </ul>
-                            </>
-                        ))}
+                        <ul className='mt-1'>
+                            {categories.map(category => (
+                                <li key={category?.id} className='flex items-center justify-center p-2 mt-1'>
+                                    <FontAwesomeIcon className='mr-4 cursor-pointer' icon={faEye} height={20} />
+                                    <Link className='flex justify-end' href={'/Expense/expenses'}>
+                                        <p className='flex items-center font-medium text-lg'>{category.name}</p>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                         <div className='mt-4'>
-                            <Button type={'secondary'} text={'New'} action={() => setAlert(true)}/>
+                            <Button type={'secondary'} text={'New'} action={() => setAlert(true)} />
                         </div>
                     </div>
                 </div>
             </div >
-            
-            { alert ?<Alert type={'error'} title={'Error!'} text={"sdsdddddddddddsassssssssda"} Close={Close}/>: null }
+
+            {alert ? <Alert type={'error'} title={'Error!'} text={"sdsdddddddddddsassssssssda"} Close={Close} /> : null}
         </>
     )
 }

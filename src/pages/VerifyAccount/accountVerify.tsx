@@ -17,11 +17,15 @@ const AccountVerify = () => {
 
     console.log(token)
     useEffect(() => {
-        const verify = () => {
+        const verify = async () => {
             setCarregando(true)
-            verifyAccount(token).then(() =>
+            const response = await verifyAccount(token)
+            if (response.success === true) {
                 setCarregando(false)
-            )
+            }
+            else {
+                router.push('/')
+            }
         }
         verify()
     }, [token])
@@ -47,7 +51,7 @@ const AccountVerify = () => {
                         <Image className='mt-3 lg:ml-28 sm:ml-0 ' src={'/joy.png'} alt={'Free'} width={300} height={220} />
                     </div>
                     <div className="flex justify-center mt-8">
-                        <Button type={"primary"} text={"Go to login"} width={400} height={40} action={goToLogin}/>
+                        <Button type={"primary"} text={"Go to login"} width={400} height={40} action={goToLogin} />
                     </div>
                 </div>
             </div >

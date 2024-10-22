@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios";
-import api from "../Api";
+import api from "../api";
 import Cookie from 'js-cookie';
-import { headers } from "next/headers";
 
 export const userLogin = async (usuario: IUserLogin) => {
     try {
@@ -61,6 +60,19 @@ export const verifyAccount = async (jwtToken: string | string[] | undefined): Pr
         }
         else {
             throw new Error('Token não recebido')
+        }
+    }
+    catch (error) {
+        const axiosError = error as AxiosError<ErrorResponse>;
+        return { success: false, error: axiosError.response?.data.details };
+    }
+}
+export const resendEmail = async (email: String): Promise<ApiResponse<unknown>> => {
+    try {
+        await api.post(`/users/resend-email?email=${email}`)
+
+        return {
+            success: true
         }
     }
     catch (error) {

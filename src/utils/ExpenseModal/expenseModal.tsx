@@ -51,6 +51,8 @@ const ExpenseModal = ({ Close }: AlertProps) => {
             priority: priority
         }
 
+        console.log(expense)
+
         setLoading(true)
         await addExpense(expense).then(() => {
             setLoading(false)
@@ -59,6 +61,10 @@ const ExpenseModal = ({ Close }: AlertProps) => {
             setLoading(false)
             console.error("Erro: ", erro)
         })
+    }
+
+    const handlePriorityChange = (e: any) => {
+        setPriority(e.target.value)
     }
 
     const handleDate = (newDate: Dayjs | null) => {
@@ -71,7 +77,7 @@ const ExpenseModal = ({ Close }: AlertProps) => {
         const fetchData = async () => {
             const data = await getExpensesCategories()
             console.log(data)
-            if (data.success === true) {
+            if (data.success === true && data.data) {
                 setCategories(data.data)
             }
         }
@@ -137,7 +143,7 @@ const ExpenseModal = ({ Close }: AlertProps) => {
                     </div>
                     <div className='p-4'>
                         <p>Priority:</p>
-                        <select className="select mt-2 w-full" onChange={(e) => setPriority(e.target.value)}>
+                        <select className="select mt-2 w-full" onChange={(e) => handlePriorityChange(e)}>
                             <option value={"VERY_HIGH"}>VERY HIGH</option>
                             <option value={"HIGH"}>HIGH</option>
                             <option value={"MEDIUM"}>MEDIUM</option>
