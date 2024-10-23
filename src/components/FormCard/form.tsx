@@ -7,7 +7,7 @@ interface FormProps {
     pages: number;
     currentPage: number | 0;
     title: string;
-    className: string;
+    className?: string;
     onPageChange?: (page: number) => void | unknown;
 }
 
