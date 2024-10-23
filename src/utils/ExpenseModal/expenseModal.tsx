@@ -9,14 +9,16 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { SetStateAction, useEffect, useState } from 'react';
 import styles from './expenseModal.module.css';
+import { useRouter } from 'next/router';
 
-interface AlertProps {
+interface ModalProps {
     Close?: Function | any,
     action?: () => void
 }
 
-const ExpenseModal = ({ Close }: AlertProps) => {
+const ExpenseModal = ({ Close }: ModalProps) => {
 
+    const router = useRouter()
     const { setLoading } = useLoadingContext()
 
     const [id, setId] = useState(Number)
@@ -25,6 +27,7 @@ const ExpenseModal = ({ Close }: AlertProps) => {
     const [category, setCategory] = useState("")
     const [currency, setCurrency] = useState("")
     const [isrecurring, setIsrecurring] = useState(Boolean)
+    const [isPaid, setIsPaid] = useState(Boolean)
     const [priority, setPriority] = useState('')
     const [amount, setAmount] = useState(Number)
     const [date, setDate] = useState<Dayjs | string>(dayjs())
@@ -46,6 +49,7 @@ const ExpenseModal = ({ Close }: AlertProps) => {
             },
             currency: currency,
             isRecurring: isrecurring,
+            isPaid: isPaid,
             attachments: [],
             priority: priority
         }
@@ -56,10 +60,17 @@ const ExpenseModal = ({ Close }: AlertProps) => {
         await addExpense(expense).then(() => {
             setLoading(false)
             console.log(expense)
+            Close
+            router.replace('/Expense/expenses')
         }).catch((erro: any) => {
             setLoading(false)
             console.error("Erro: ", erro)
         })
+    }
+
+    const handleCategoryChange = (e: any) => {
+        console.log(e)
+        setCategory(e)
     }
 
     const handlePriorityChange = (e: any) => {
@@ -103,37 +114,42 @@ const ExpenseModal = ({ Close }: AlertProps) => {
                     </div>
                 </div>
                 <div className='flex justify-center gap-6'>
-                    {/* <div className="mt-4 mr-6">
-                        <select
-                            className="mt-2"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-                            <option value="">Select a category</option>
-                            {categories && categories.map((cat) => (
-                                <option key={cat.name} value={cat.name}>
-                                    {cat.name}
-                                </option>
-                            ))}
-                            <option value="new">Add new category</option>
-                        </select>
-                    </div> */}
+                    {category === ' ' || category === undefined && (
+                        <div className="flex mt-4 mr-6">
+                            <label htmlFor="">Category</label>
+                            <select
+                                className="mt-2"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                <option value="">Select a category</option>
+                                {categories && categories.map((cat) => (
+                                    <option key={cat.name} value={cat.name}>
+                                        {cat.name}
+                                    </option>
+                                ))}
+                                <option value="new">Add new category</option>
+                            </select>
+                        </div>
+                    )}
 
-                    {/* {category === "new" && ( */}
-                    <div className="">
-                        <Input
-                            placeholder={'New category'}
-                            type={'text'}
-                            label={'Category'}
-                            onChange={(e: { target: { value: SetStateAction<string> } }) => setCategory(e.target.value)}
-                        />
-                    </div>
-                    {/* )} */}
-                </div>
-                <div className='flex justify-center gap-6 mt-2 mr-6'>
-                    <div className=''>
-                        <p className='align-start'>Description</p>
-                        <textarea className='p-2 border border-gray-300 rounded-md' cols={50} rows={2} placeholder='description' value={description} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setDescription(e.target.value)} />
+                    {category !== undefined && (
+                        <div className="flex gap-2">
+                            <Input
+                                placeholder={'New category'}
+                                type={'text'}
+                                label={'Category'}
+                                onChange={(e: { target: { value: SetStateAction<string> } }) => handleCategoryChange(e.target.value)}
+                            />
+                            <FontAwesomeIcon className='cursor-pointer' icon={faX} height={20} onClick={() => setCategory('')} />
+                        </div>
+                    )}
+
+                    <div className='flex justify-center gap-6 w-[50%]'>
+                        <div className=''>
+                            <p className='align-start'>Description</p>
+                            <textarea className='p-2 border border-gray-300 rounded-md' cols={50} rows={2} placeholder='description' value={description} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setDescription(e.target.value)} />
+                        </div>
                     </div>
                 </div>
                 <div className='flex justify-center gap-6 mt-2'>
@@ -151,21 +167,37 @@ const ExpenseModal = ({ Close }: AlertProps) => {
                         </select>
                     </div>
                 </div>
-                <div className='flex gap-4 mt-2 justify-center'>
+                <div className='flex gap-6 mt-2 justify-center'>
                     <div>
                         <Input placeholder={'currency'} type={'text'} label={'Currency'} value={currency} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setCurrency(e.target.value)} maxLength={3} />
                     </div>
-                    <div className='flex flex-col'>
-                        <p>Is recurring?</p>
-                        <div className='flex items-center'>
-                            <input type='radio' name='radio' onChange={() => setIsrecurring(true)} />
-                            <label className='ml-2'>Yes</label>
-                        </div>
-                        <div className='flex items-center'>
-                            <input type='radio' name='radio' onChange={() => setIsrecurring(false)} />
-                            <label className='ml-2'>No</label>
+                    <div className=''>
+                        <p>Is recurring  ?</p>
+                        <div className=' flex gap-6'>
+                            <div className='flex items-center'>
+                                <input type='radio' name='radio' onChange={() => setIsrecurring(true)} />
+                                <label className='ml-2'>Yes</label>
+                            </div>
+                            <div className='flex items-center'>
+                                <input type='radio' name='radio' onChange={() => setIsrecurring(false)} />
+                                <label className='ml-2'>No</label>
+                            </div>
                         </div>
                     </div>
+                    <div className=''>
+                        <p>Is paid ?</p>
+                        <div className=' flex gap-6'>
+                            <div className='flex items-center'>
+                                <input type='radio' name='radio' onChange={() => setIsPaid(true)} />
+                                <label className='ml-2'>Yes</label>
+                            </div>
+                            <div className='flex items-center'>
+                                <input type='radio' name='radio' onChange={() => setIsPaid(false)} />
+                                <label className='ml-2'>No</label>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className='flex justify-center mt-4'>

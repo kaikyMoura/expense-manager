@@ -1,17 +1,11 @@
 .modalContainer {
     position: fixed;
     box-shadow: inset;
-    height: 98%;
-    width: 90%;
-    max-width: 800px;
-    border: 2px solid;
-    border-radius: 6px;
-    top: 1%;
-    left: 50%;
-    transform: translateX(-50%);
+    height: 100%;
+    width: 100%;
+    top: 0.1%;
     background-color: white;
     z-index: 1000;
-    overflow-y: auto;
 }
 
 .modal {

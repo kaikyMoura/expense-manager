@@ -3,18 +3,19 @@ import styles from './form.module.css'
 
 interface FormProps {
     children: React.ReactNode[]
-    action?: string
+    action?: string;
     pages: number;
     currentPage: number | 0;
-    title: string
-    onPageChange: (page: number) => void | unknown;
+    title: string;
+    className: string;
+    onPageChange?: (page: number) => void | unknown;
 }
 
-const Form = ({ action, children, pages, currentPage, onPageChange, title }: FormProps) => {
+const Form = ({ action, children, className, currentPage, onPageChange, title }: FormProps) => {
 
     return (
         <>
-            <form className={styles.formContainer} action={action}>
+            <form className={`${className} ${styles.formContainer}`} action={action}>
                 <h2 className="font-medium text-xl">{title}</h2>
                 {children[currentPage]}
             </form>

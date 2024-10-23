@@ -1,5 +1,5 @@
 interface IExpense {
-    id?: number | null,
+    id?: string,
     name: String,
     description: String,
     amount: Number,
@@ -7,6 +7,8 @@ interface IExpense {
     category: Category,
     currency: String,
     isRecurring: Boolean,
+    isPaid: Boolean,
     attachments: String[],
-    priority: unknown
+    priority: any,
+    status?: any
 }

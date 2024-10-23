@@ -1,9 +1,9 @@
+import ExpenseModal from "@/utils/ExpenseModal/expenseModal";
+import { faBook, faChartSimple, faLightbulb, faPaintBrush, faShield, faTableCellsLarge, faTags, faTimeline } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import SideMenu from "../Menu/SideMenu";
-import styles from './dashboard.module.css';
-import { faBook, faChartSimple, faLightbulb, faPaintBrush, faShield, faTableCellsLarge, faTimeline, faToggleOn, faUsers } from "@fortawesome/free-solid-svg-icons";
 import NavBar from "../Navbar/navbar";
-import ExpenseModal from "@/utils/ExpenseModal/expenseModal";
+import styles from './dashboard.module.css';
 
 interface DashBoardProps {
     children: React.ReactNode;
@@ -37,8 +37,8 @@ const DashBoard: React.FC<DashBoardProps> = ({ children }) => {
 
                     {!ativarSideMenu ?
                         <SideMenu ativarSideMenu={ativarSideMenu} items={[{ nome: "Dashboard", link: "/Home/home", icon: faTableCellsLarge },
-                        { nome: "Track", link: "/H", icon: faBook }, { nome: "Statistics", link: "/Hoe", icon: faChartSimple },
-                        { nome: "Categories", link: "/Ho", icon: faUsers }, { nome: "Expenses", link: "/Expense/expenses", icon: faTimeline }
+                        { nome: "Tracks", link: "/H", icon: faBook }, { nome: "Statistics", link: "/Hoe", icon: faChartSimple },
+                        { nome: "Categories", link: "/Ho", icon: faTags }, { nome: "Expenses", link: "/Expense/expenses", icon: faTimeline }
                         ]}
                             profiles={[{ nome: "Insights", link: "/Hod", icon: faLightbulb }, { nome: "Customize", link: "/Hod", icon: faPaintBrush },
                             { nome: "Privacy", link: "/Hod", icon: faShield }
