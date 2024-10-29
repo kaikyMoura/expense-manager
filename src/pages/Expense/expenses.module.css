@@ -10,10 +10,19 @@
     width: 100%;
 }
 
-.container tr p {
+.tbRow p {
     background-color: white;
     border-radius: 8px;
     padding: 4px;
+}
+.tbRow p:hover {
+    background-color: #dfdfdf;
+}
+
+.tbRow:hover {
+    cursor: pointer;
+    background-color: white;
+    border-radius: 8px;
 }
 
 .container tr {

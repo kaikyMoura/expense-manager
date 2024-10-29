@@ -114,7 +114,6 @@ const ExpenseModal = ({ Close }: ModalProps) => {
                     </div>
                 </div>
                 <div className='flex justify-center gap-6'>
-                    {category === ' ' || category === undefined && (
                         <div className="flex mt-4 mr-6">
                             <label htmlFor="">Category</label>
                             <select
@@ -131,9 +130,8 @@ const ExpenseModal = ({ Close }: ModalProps) => {
                                 <option value="new">Add new category</option>
                             </select>
                         </div>
-                    )}
 
-                    {category !== undefined && (
+                    {category == undefined && (
                         <div className="flex gap-2">
                             <Input
                                 placeholder={'New category'}

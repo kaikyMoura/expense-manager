@@ -14,7 +14,6 @@ const DashBoard: React.FC<DashBoardProps> = ({ children }) => {
 
     const [activeModal, setActiveModal] = useState(false)
 
-
     const toggleSidebar = () => {
         setSideMenu(!ativarSideMenu);
     }
@@ -31,7 +30,7 @@ const DashBoard: React.FC<DashBoardProps> = ({ children }) => {
 
     return (
         <>
-            <div className={`${activeModal ? styles.blur : null}`}>
+            <div>
                 <div className={`${styles.dashBoard}`}>
                     <NavBar titulo={"Expense Manager"} openModal={addExpense} />
 

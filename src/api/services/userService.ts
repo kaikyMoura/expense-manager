@@ -16,7 +16,14 @@ export const userLogin = async (usuario: IUserLogin) => {
     }
     catch (error) {
         const axiosError = error as AxiosError<ErrorResponse>;
-        return { success: false, error: axiosError.response?.data.details };
+        if (axiosError.response) {
+            console.log(axiosError.response)
+            const errorDetails = axiosError.response.data.details || axiosError.response.data.message || "Credenciais invalidas";
+            return { success: false, error: errorDetails };
+        } else {
+            // Caso o erro não tenha uma resposta (erro de rede, timeout, etc)
+            return { success: false, error: "Erro de rede ou conexão" };
+        }
     }
 }
 
@@ -24,6 +31,21 @@ export const createUser = async (usuario: IUserLogin) => {
     try {
         await api.post('/users', usuario)
         return { success: true }
+    }
+    catch (error) {
+        const axiosError = error as AxiosError<ErrorResponse>;
+        return { success: false, error: axiosError.response?.data.details };
+    }
+}
+
+export const updatePassword = async (jwtToken: string | string[] | undefined, password: string) => {
+    try {
+        const response = await api.put('/users/change-password', password, {
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`
+            }
+        })
+        return { success: true, message: response.data.message }
     }
     catch (error) {
         const axiosError = error as AxiosError<ErrorResponse>;
@@ -81,7 +103,22 @@ export const resendEmail = async (email: String): Promise<ApiResponse<unknown>> 
     }
 }
 
-export const checkUserAuthentication = async (): Promise<ApiResponse<unknown>> => {
+export const sendResetPasswordEmail = async (email: String): Promise<ApiResponse<string>> => {
+    try {
+        const response = await api.post(`/users/send-resetpassword-email?email=${email}`)
+
+        return {
+            success: true,
+            data: response.data.message
+        }
+    }
+    catch (error) {
+        const axiosError = error as AxiosError<ErrorResponse>;
+        return { success: false, error: axiosError.response?.data.details };
+    }
+}
+
+export const checkUserAuthentication = async (): Promise<ApiResponse<string | undefined>> => {
     try {
         const result = await api.get('/users/validate-token');
 

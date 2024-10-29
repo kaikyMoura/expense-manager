@@ -1,7 +1,7 @@
 .container {
     display: flex;
-    padding: 6em;
     height: 100%;
+    padding: 6em;
     overflow-y: hidden;
     align-items: center;
     width: 100%;
@@ -9,12 +9,10 @@
 }
 
 .card {
-    margin-top: 5%;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 6%;
     width: 50%;
-    padding: 24px;
+    
+    padding: 14px;
 }
 
 @media (min-width: 0px) and (max-width: 768px) {

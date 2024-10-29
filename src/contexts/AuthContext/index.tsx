@@ -14,7 +14,7 @@ interface AuthContextProps {
 
 const AppContext = createContext<AuthContextProps | undefined>(undefined)
 
-const publicPages = ['/Login/login', '/Signup/signup', '/GetStarted/getStarted', '/VerifyAccount/verifyAccount', '/VerifyAccount/accountVerify']
+const publicPages = ['/Login/login', '/Signup/signup', '/GetStarted/getStarted', '/VerifyAccount/verifyAccount', '/VerifyAccount/accountVerify', '/ChangePassword/resetPassword','/ChangePassword/changePassword']
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -55,33 +55,35 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     useEffect(() => {
         const handleAuthentication = async () => {
-
             try {
                 const token = Cookie.get('Token');
                 if (token) {
                     const userAuthenticated = await checkUserAuthentication();
-                    console.log(userAuthenticated)
+                    console.log(userAuthenticated);
                     if (userAuthenticated?.error === 'Token inválido ou expirado.') {
                         setIsAuthenticated(false);
-                        Cookie.remove('Token')
-                        router.replace('/GetStarted/getStarted');
+                        Cookie.remove('Token');
+                        router.replace('/Login/login');
                     } else {
                         setIsAuthenticated(true);
                         if (router.pathname === '/Home/Home') {
                             router.replace('/Home/home');
+                        } 
+                        else if (router.pathname !== '/_error') {
+                            
+                            router.replace(router.pathname);
                         }
                         else {
-                            router.replace(router.pathname)
+                            router.replace('/Login/login')
                         }
                     }
                 } else {
                     setIsAuthenticated(false);
-                    if (router.pathname !== '/Login/login' && router.pathname !== '/Signup/signup' && router.pathname !== '/VerifyAccount/verifyAccount' && router.pathname !== '/VerifyAccount/accountVerify') {
+                    if (!['/Login/login', '/Signup/signup', '/ChangePassword/changePassword', '/ChangePassword/resetPassword', '/VerifyAccount/verifyAccount', '/VerifyAccount/accountVerify'].includes(router.pathname)) {
                         router.replace('/GetStarted/getStarted');
                     }
                 }
-            }
-            catch (error) {
+            } catch (error) {
                 console.error("Erro na autenticação:", error);
                 setIsAuthenticated(false);
                 router.replace('/GetStarted/getStarted');

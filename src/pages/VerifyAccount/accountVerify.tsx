@@ -22,9 +22,10 @@ const AccountVerify = () => {
             const response = await verifyAccount(token)
             if (response.success === true) {
                 setCarregando(false)
+                router.replace('/Login/login')
             }
             else {
-                router.push('/')
+                router.replace('/Login/login')
             }
         }
         verify()

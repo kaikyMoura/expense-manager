@@ -78,16 +78,27 @@ const Signup = () => {
         setCarregando(true)
         const response = await createUser(usuario)
         if (response.success === true) {
-            // setText("User created with success!")
-            // setSucessAlert(true)
             setCarregando(false)
             router.push('/VerifyAccount/verifyAccount')
         }
         else {
-            console.log(response.error)
-            setText(response.error)
-            setErrorAlert(true)
-            setCarregando(false)
+            if (response.error == "Já existe um usuário com esse email.") {
+                console.log(response.error)
+                setText(response.error)
+                setErrorAlert(true)
+                setCarregando(false)
+                // if (errorAlert) {
+                // const timeout = setTimeout(() => setErrorAlert(false), 1000)
+                // clearTimeout(timeout)
+                // // setNoti
+                // }
+            }
+            else {
+                console.log(response.error)
+                setText(response.error)
+                setErrorAlert(true)
+                setCarregando(false)
+            }
         }
     }
 
@@ -138,7 +149,7 @@ const Signup = () => {
                         <div className="mt-4 flex justify-center">
                             <p className="font-medium">Already have an account ?</p>
                             <Link className="ml-2" href="/Login/login">
-                                <p className="font-medium">click here</p>
+                                <u className="font-medium">click here</u>
                             </Link>
                         </div>
                     </div>
@@ -159,13 +170,13 @@ const Signup = () => {
                         } type={"password"} value={repeatPassword} />
 
                         <div className={`mt-2 flex justify-center ${styles.loginButton}`}>
-                            <Button text={"salvar"} width={280} height={40} type={"primary"} action={createAccount} />
+                            <Button text={"Create account"} width={280} height={40} type={"primary"} action={createAccount} />
                         </div>
 
                         <div className="mt-4 flex justify-center">
                             <p className="font-medium">Already have an account ?</p>
                             <Link className="ml-2" href="/Login/login">
-                                <p className="font-medium">click here</p>
+                                <u className="font-medium">click here</u>
                             </Link>
                         </div>
                     </div>
@@ -173,8 +184,8 @@ const Signup = () => {
             </div>
 
             {carregando ? <Loading /> : null}
-            {errorAlert ? <Alert type={"error"} title={"Error!"} text={text} Close={Close}/> : null}
-            {sucessAlert ? <Alert type={"sucess"} title={"Sucess!"} text={text} Close={Close}/> : null}
+            {errorAlert ? <Alert type={"error"} title={"Error!"} text={text} Close={Close} /> : null}
+            {sucessAlert ? <Alert type={"sucess"} title={"Sucess!"} text={text} Close={Close} /> : null}
         </>
     )
 }

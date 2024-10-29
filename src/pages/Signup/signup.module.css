@@ -25,6 +25,10 @@ div .input p {
     margin-top: 2em;
 }
 
+.container u {
+    color: rgb(0, 174, 255);
+}
+
 .profileImage {
     width: 100px;
     height: 100px;

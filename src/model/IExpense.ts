@@ -1,4 +1,4 @@
-interface IExpense {
+type IExpense = {
     id?: string,
     name: String,
     description: String,

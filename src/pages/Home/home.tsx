@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './home.module.css';
+import BarChart from '@/components/Charts/BarChart';
 
 const Home = () => {
     const [expenses, setExpenses] = useState<IExpense[]>([])
@@ -41,6 +42,9 @@ const Home = () => {
                 <div className={`-mt-16 ${styles.calender}`}>
                     <Calendar />
                 </div>
+                <Link className='cursor-pointer' href={'/Statistics/statistics'}>
+                    <BarChart data={expenses} />
+                </Link>
                 <div className={`-mt-16 ${styles.expenses}`}>
                     <div className='flex justify-between ml-6 mt-5'>
                         <h3 className='font-bold'>My Expenses ({expenses.length})</h3>
@@ -52,12 +56,12 @@ const Home = () => {
                         {expenses && expenses.map(expense =>
                             <li key={expense?.id} className='flex items-center p-2 mt-1'>
                                 <FontAwesomeIcon className='mr-4 cursor-pointer' icon={faEye} height={20} />
-                                <Link className='flex justify-end' href={'/Expense/expenses'}>
+                                <Link className='flex justify-between w-full' href={'/Expense/expenses'}>
                                     <p className='flex items-center font-medium text-lg'>{expense.name}</p>
                                     {typeof expense.date === 'object' && dayjs.isDayjs(expense.date) ?
-                                        <p className='flex items-center ml-48 font-bold'>{expense.date.toString()}</p>
+                                        <p className='flex items-center font-bold'>{expense.date.toString()}</p>
                                         :
-                                        <p className='flex items-center justify-end ml-44 font-bold'>{expense.date}</p>
+                                        <p className='flex items-center font-bold'>{expense.date}</p>
                                     }
                                 </Link>
                             </li>
@@ -69,7 +73,7 @@ const Home = () => {
                         <p>show more</p>
                     </Link>
                 </div>
-                <div className={`-mt-16 ${styles.analitics}`}>
+                <div className={`ml-96 mt-80 absolute ${styles.analitics}`}>
                     <div>
                         <h3 className='flex justify-start mt-5 ml-4 font-bold'>Statistics</h3>
                         <div className={`mt-3 ${styles.line}`} />
@@ -107,8 +111,8 @@ const Home = () => {
                         <div className={`mt-3 ${styles.line}`} />
                         <ul className='mt-1'>
                             {categories.map(category => (
-                                <li key={category?.id} className='flex items-center justify-center p-2 mt-1'>
-                                    <FontAwesomeIcon className='mr-4 cursor-pointer' icon={faEye} height={20} />
+                                <li key={category?.id} className='cursor-pointer flex items-center justify-start ml-2 p-2 mt-1 mr-2'>
+                                    <FontAwesomeIcon className='mr-4' icon={faEye} height={20} />
                                     <Link className='flex justify-end' href={'/Expense/expenses'}>
                                         <p className='flex items-center font-medium text-lg'>{category.name}</p>
                                     </Link>

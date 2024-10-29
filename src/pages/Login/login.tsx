@@ -1,44 +1,77 @@
+import { sendResetPasswordEmail, userLogin } from "@/api/services/userService";
+import Button from "@/components/Button/button";
+import Input from "@/components/Input/input";
+import Modal from "@/components/Modal/modal";
+import Toolbar from "@/components/ToolBar/toolbar";
+import { useLoadingContext } from "@/contexts/LoadingContext";
+import Alert from "@/utils/Notification/notification";
 import { useRouter } from "next/router";
 import { SetStateAction, useState } from "react";
-import styles from './login.module.css'
-import Input from "@/components/Input/input";
+import styles from './login.module.css';
 import Link from "next/link";
-import Button from "@/components/Button/button";
-import Toolbar from "@/components/ToolBar/toolbar";
-import { userLogin } from "@/api/services/userService";
-import Loading from "@/utils/Loading/loading";
 
 const LoginPage = () => {
 
-    const [alerta, setAlerta] = useState(false)
-    const [carregando, setCarregando] = useState(false)
+    const [errorAlert, setErrorAlert] = useState(false)
+    const [notificationAlert, setNotificationAlert] = useState(false)
+    const { setLoading } = useLoadingContext()
+    const [isOpen, setOpenModal] = useState(false)
 
     const router = useRouter()
+
+    const [text, setText] = useState("")
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const login = async () => {
-        setCarregando(true)
+        setLoading(true)
         const usuario: IUserLogin = {
             email: email,
             password: password
         }
 
-        await userLogin(usuario).then(() => {
-            //setAlerta(true)
-            setCarregando(false)
-            router.replace("/Home/home")
-        }).catch((erro: any) => {
-            setCarregando(false)
-            setAlerta(true)
-            console.error("Erro: ", erro)
-        })
+        const response = await userLogin(usuario)
+        if (response.success === true) {
+            setLoading(false)
+            router.push("/Home/home")
+        }
+        else {
+            setLoading(false)
+            console.error("Erro: ", response.error)
+            if (response.error) {
+                setErrorAlert(true)
+                setText(response.error)
+            }
+        }
     }
-    const Closer = () => {
-        setAlerta(false)
+    const Close = () => {
+        setErrorAlert(false)
+        setNotificationAlert(false)
+        setOpenModal(false)
     }
 
+    const resetPassword = async () => {
+        setLoading(true)
+        const response = await sendResetPasswordEmail(email)
+        setOpenModal(false)
+        if (response.success === true) {
+            setLoading(false)
+            setText("An email has been sent to your address. Please check your inbox to proceed with resetting your password.")
+            setNotificationAlert(true)
+        }
+        else {
+            if (response.error) {
+                setLoading(false)
+                setText(response.error)
+                setErrorAlert(true)
+            }
+            else {
+                setErrorAlert(true)
+                setText("Email incorreto")
+            }
+        }
+    }
     return (
         <>
             <Toolbar />
@@ -53,19 +86,42 @@ const LoginPage = () => {
                     } type={"password"} />
                     <br />
                     <div className={`flex justify-center ${styles.loginButton}`}>
-                        <Button text={"salvar"} width={280} height={25} type={"primary"} action={login} />
+                        <Button text={"Login"} width={280} height={25} type={"primary"} action={login} />
                     </div>
                     <br />
                     <div className="flex justify-center">
+                        <p className="font-medium">Forgot your password ?</p>
+                        <u className="font-medium ml-2 cursor-pointer" onClick={() => setOpenModal(true)}>click here</u>
+                    </div>
+                    <div className="flex justify-center mt-4">
                         <p className="font-medium">First acess ?</p>
-                        <Link className="ml-2" href="/Signup/signup">
-                            <p className="font-medium">click here</p>
+                        <Link className="ml-2" href={"/Signup/signup"}>
+                            <u className="font-medium cursor-pointer ml-2">click here</u>
                         </Link>
                     </div>
                 </form>
             </div>
 
-            {carregando ? <Loading /> : null}
+            {errorAlert ? <Alert type={"error"} title={"Error!"} text={text} Close={Close} /> : null}
+            {notificationAlert ? <Alert type={"notification"} title={"Message"} text={text} Close={Close} /> : null}
+
+            {isOpen && <Modal classname={styles.modal} Close={Close}>
+                <form className={`mt-8`}>
+                    <h2 className="font-medium text-xl">Forgot your password ?</h2>
+                    <div className="mt-4">
+                        <p className="font-medium text-md">Please enter the email address associated with your account</p>
+                        <p className="font-medium text-md">and we will send you instructions to reset your password.</p>
+                    </div>
+                    <div className="mt-4">
+                        <Input label={"Email"} placeholder={"email"} onChange={(e: { target: { value: SetStateAction<string> } }) =>
+                            setEmail(e.target.value)} type={"email"} />
+                    </div>
+                    <br />
+                    <div className={`flex justify-center ${styles.loginButton}`}>
+                        <Button text={"Send email"} width={280} height={40} type={"primary"} action={resetPassword} />
+                    </div>
+                </form>
+            </Modal>}
         </>
     )
 }
