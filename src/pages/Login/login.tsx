@@ -42,6 +42,10 @@ const LoginPage = () => {
             if (response.error) {
                 setErrorAlert(true)
                 setText(response.error)
+
+                if (response.error === "Sua conta ainda não foi ativada, por favor cheque seu email") {
+                    router.push('/VerifyAccount/verifyAccount')
+                }
             }
         }
     }

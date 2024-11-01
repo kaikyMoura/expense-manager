@@ -7,25 +7,22 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from './accountVerify.module.css'
 import Button from "@/components/Button/button";
+import { useLoadingContext } from '@/contexts/LoadingContext';
 
 
 const AccountVerify = () => {
-    const [carregando, setCarregando] = useState(false)
+    const { isLoading, setLoading } = useLoadingContext()
 
     const router = useRouter();
-    const { token } = router.query
+    const token = router.query.token
 
-    console.log(token)
     useEffect(() => {
         const verify = async () => {
-            setCarregando(true)
+            console.log(token)
+            setLoading(true)
             const response = await verifyAccount(token)
             if (response.success === true) {
-                setCarregando(false)
-                router.replace('/Login/login')
-            }
-            else {
-                router.replace('/Login/login')
+                setLoading(false)
             }
         }
         verify()
@@ -35,7 +32,7 @@ const AccountVerify = () => {
         router.push('/Login/login')
     }
 
-    if (carregando == true) {
+    if (isLoading == true) {
         return <Loading />
     }
 

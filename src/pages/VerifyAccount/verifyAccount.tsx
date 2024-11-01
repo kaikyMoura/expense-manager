@@ -5,13 +5,20 @@ import Image from 'next/image'
 import { SetStateAction, useState } from "react";
 import Input from "@/components/Input/input";
 import { resendEmail } from "@/api/services/userService";
+import { useLoadingContext } from "@/contexts/LoadingContext";
 
 
 const VerifyAccount = () => {
+    const { setLoading } = useLoadingContext()
     const [email, setEmail] = useState('')
 
     const sendEmail = async () => {
-        await resendEmail(email)
+        const response = await resendEmail(email)
+
+        setLoading(true)
+        if (response.success === true) {
+            setLoading(false)
+        }
     }
 
     return (

@@ -21,7 +21,6 @@ export const userLogin = async (usuario: IUserLogin) => {
             const errorDetails = axiosError.response.data.details || axiosError.response.data.message || "Credenciais invalidas";
             return { success: false, error: errorDetails };
         } else {
-            // Caso o erro não tenha uma resposta (erro de rede, timeout, etc)
             return { success: false, error: "Erro de rede ou conexão" };
         }
     }
